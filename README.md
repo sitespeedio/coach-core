@@ -22,7 +22,7 @@ const har = // we get the HAR from a browser
 // to get the page that you want
 const firstPageHar = coach.pickAPage(har, 0);
 
-const result = await coach.runHarAdvice(firstPageHar);
+const harResult = await coach.analyseHar(firstPageHar);
 
 // Say that you got the result from the browser in domAdviceResult
 // and the HAR result in harAdviceResult
