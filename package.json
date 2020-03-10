@@ -26,8 +26,6 @@
     "url": "https://github.com/sitespeedio/coach-core/issues"
   },
   "scripts": {
-    "bookmarklet": "npm run domconsole && bookmarkletify dist/domconsole.js -o dist/coach.bookmarklet.js",
-    "domconsole": "node tools/domconsole.js dist/coach.js dist/domconsole.js",
     "combine": "mkdirp dist && node tools/combine.js dist/coach.js",
     "test:api": "mocha --recursive test/api",
     "test:dom": "mocha --recursive test/dom",
