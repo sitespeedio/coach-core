@@ -29,7 +29,7 @@ describe('HAR APIs:', function() {
         ));
   });
 
-  describe('runHarAdvice', async function() {
+  describe('analyseHar', async function() {
     const harPath = path.join(
         __dirname,
         '..',
@@ -40,7 +40,7 @@ describe('HAR APIs:', function() {
       har = await fs.readFileAsync(harPath, 'utf8').then(JSON.parse);
 
     it('should output correct structure', () =>
-      api.runHarAdvice(har).then(advicePerPage => {
+      api.analyseHar(har).then(advicePerPage => {
         advicePerPage.should.have.length(2);
 
         const firstPageAdvice = advicePerPage[0];

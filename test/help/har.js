@@ -16,7 +16,7 @@ module.exports = {
   async firstAdviceForTestFile(fileName, options) {
     const advice = await api.getHarAdvice();
     return this.harFromTestFile(fileName)
-      .then(har => api.runHarAdvice(har, advice, undefined, options))
+      .then(har => api.analyseHar(har, advice, undefined, options))
       .then(result => result[0].advice);
   }
 };
