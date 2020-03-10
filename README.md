@@ -1,15 +1,12 @@
 # The Coach - core
 
 [![Build status][travis-image]][travis-url]
-[![Downloads][downloads-image]][downloads-url]
-[![Docker][docker-image]][docker-url]
-[![Stars][stars-image]][stars-url]
 
 [Documentation](https://www.sitespeed.io/documentation/coach/) | [Changelog](https://github.com/sitespeedio/coach-core/blob/master/CHANGELOG.md)
 
 ![The coach](img/coach.png)
 
-The coach helps you find performance, best practice and privacy problems on your web page. *coach-core* holds the JAvaScript functionality to analyse your page, the Coach project is the CLI.
+The coach helps you find performance, best practice and privacy problems on your web page. *coach-core* holds the JavaScript functionality to analyse your page, the [Coach project](https://github.com/sitespeedio/coach) is the CLI.
 
 ```js
 const coach = require('coach-core');
@@ -18,7 +15,6 @@ const coach = require('coach-core');
 const domAdviceJavaScript = await coach.getDomAdvice();
 // Take the *domAdviceJavaScript* and run it in your browser and take care of the result.
 const domResult = ...
-
 
 const har = // we get the HAR from a browser
 
