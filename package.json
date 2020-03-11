@@ -31,7 +31,7 @@
     "test:dom": "mocha --recursive test/dom",
     "test:har": "mocha --recursive test/har",
     "test:merge": "mocha --recursive test/merge",
-    "pretest": "npm run combine && npm run bookmarklet && npm run uglify",
+    "pretest": "npm run combine && npm run uglify",
     "test": "mocha --recursive test/api test/dom test/har test/merge",
     "jsdoc": "jsdoc -R README.md -r -d dist/doc lib",
     "lint": "eslint .",
