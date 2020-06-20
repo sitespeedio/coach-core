@@ -1,5 +1,9 @@
 # CHANGELOG - coach-core
 
+## 5.0.2 - 2020-06-20
+### Fixed
+* Updated to latest PageXray.
+
 ## 5.0.1 - 2020-03-23
 ### Fixed
 * Remove NodeJS 12 limit. Running 10 is still ok.
