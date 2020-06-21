@@ -1,5 +1,9 @@
 # CHANGELOG - coach-core
 
+## 5.1.0 - 2020-06-21
+### Fixed
+* Updated third party web to 0.12.0.
+
 ## 5.0.2 - 2020-06-20
 ### Fixed
 * Updated to latest PageXray.

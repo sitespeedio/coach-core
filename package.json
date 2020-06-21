@@ -81,6 +81,6 @@
     "lodash.merge": "^4.6.2",
     "lodash.sortby": "4.7.0",
     "pagexray": "2.5.10",
-    "third-party-web": "0.11.1"
+    "third-party-web": "0.12.0"
   }
 }
