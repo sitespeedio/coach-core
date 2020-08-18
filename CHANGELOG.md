@@ -1,5 +1,9 @@
 # CHANGELOG - coach-core
 
+## 5.1.1 - 2020-08-18
+### Fixed
+* Updated third party web to 0.12.2.
+
 ## 5.1.0 - 2020-06-21
 ### Fixed
 * Updated third party web to 0.12.0.
