@@ -39,7 +39,8 @@ module.exports = {
       browser: browser,
       timeouts: {
         browserStart: 60000
-      }
+      },
+      xvfb: true
     });
 
     let baseUrl;
