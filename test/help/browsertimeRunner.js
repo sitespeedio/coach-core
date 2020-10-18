@@ -35,13 +35,19 @@ module.exports = {
       );
     }
 
-    const runner = new browsertime.SeleniumRunner({
+    const config = {
       browser: browser,
       timeouts: {
         browserStart: 60000
-      },
-      xvfb: true
-    });
+      }
+    }
+
+    if (process.env.CI) {
+      config.xvfb = true
+    }
+
+    const runner = new browsertime.SeleniumRunner(config
+    );
 
     let baseUrl;
 
