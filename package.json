@@ -43,7 +43,7 @@
     "uglify": "uglifyjs dist/coach.js --compress side_effects=false,negate_iife=false --mangle > dist/coach.min.js"
   },
   "devDependencies": {
-    "browsertime": "8.1.2",
+    "browsertime": "10.5.0",
     "bluebird": "3.5.5",
     "bookmarkletify": "^1.0.0",
     "chai": "^4.2.0",
