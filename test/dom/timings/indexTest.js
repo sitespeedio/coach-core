@@ -17,12 +17,6 @@ describe('Timings', function() {
 
       after(() => runner.stop());
 
-      it('We should get a RUMSpeedIndex', function() {
-        return runner.run('rumSpeedIndex.js', 'index.html').then(result => {
-          assert.strictEqual(result > 0, true);
-        });
-      });
-
       it('We should get a Navigation Timings', function() {
         return runner.run('navigationTimings.js', 'index.html').then(result => {
           assert.strictEqual(result.loadEventEnd > 0, true);

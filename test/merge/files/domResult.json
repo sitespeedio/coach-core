@@ -360,7 +360,6 @@
         "unloadEventEnd": 0,
         "unloadEventStart": 0
       },
-      "rumSpeedIndex": 454,
       "timings": {
         "backEndTime": 454,
         "domContentLoadedTime": 503,
