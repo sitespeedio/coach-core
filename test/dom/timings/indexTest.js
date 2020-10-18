@@ -23,12 +23,6 @@ describe('Timings', function() {
         });
       });
 
-      it('We should get our calculated timings', function() {
-        return runner.run('timings.js', 'index.html').then(result => {
-          assert.strictEqual(result.frontEndTime > 0, true);
-        });
-      });
-
       it('We should get User Timing Marks', function() {
         return runner.run('userTimings.js', 'index.html').then(result => {
           assert.strictEqual(result.marks[0].startTime > 0, true);
