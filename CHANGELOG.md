@@ -3,6 +3,8 @@
 ## 6.0.0 - UNRELEASED
 ### Added
 * Added Element Timings, Paint Timings and Largest Contentful Paint [#16](https://github.com/sitespeedio/coach-core/pull/16).
+* Added CLS advice [#18](https://github.com/sitespeedio/coach-core/pull/18).
+* Added Long Task advice [#17](https://github.com/sitespeedio/coach-core/pull/17).
 
 ### Changed
 * Remove RUM Speed Index [#12](https://github.com/sitespeedio/coach-core/pull/12).
