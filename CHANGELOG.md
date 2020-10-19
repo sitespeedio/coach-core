@@ -2,8 +2,11 @@
 
 ## 6.0.0 - UNRELEASED
 ### Added
+* Added Element Timings, Paint Timings and Largest Contentful Paint [#16](https://github.com/sitespeedio/coach-core/pull/16).
 
 ### Changed
+* Remove RUM Speed Index [#12](https://github.com/sitespeedio/coach-core/pull/12).
+* Remove First Paint and timings calculated from the Navigation Timing API [#15](https://github.com/sitespeedio/coach-core/pull/15).
 
 ### Fixed
 
