@@ -12,6 +12,8 @@ describe('Test HAR util functions', function() {
     assert.strictEqual(util.isHTTP2(page), true);
     page.httpType = 'h1';
     assert.strictEqual(util.isHTTP2(page), false);
+    page.httpType = 'h3-29';
+    assert.strictEqual(util.isHTTP3(page), false);
   });
 
   it('Get the right hostname', function() {
