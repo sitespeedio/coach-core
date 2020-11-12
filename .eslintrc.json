@@ -12,7 +12,8 @@
     "prettier/prettier": [
       "error",
       {
-        "singleQuote": true
+        "singleQuote": true,
+        "trailingComma": "none"
       }
     ],
     "no-extra-semi": 0,
