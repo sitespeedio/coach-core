@@ -43,22 +43,22 @@
     "terser": "terser dist/coach.js --compress side_effects=false,negate_iife=false --mangle > dist/coach.min.js"
   },
   "devDependencies": {
-    "browsertime": "10.5.0",
+    "browsertime": "10.6.5",
     "bluebird": "3.7.2",
     "bookmarkletify": "^1.0.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "connect": "^3.7.0",
-    "eslint": "6.2.2",
-    "eslint-config-prettier": "6.13.0",
+    "eslint": "7.13.0",
+    "eslint-config-prettier": "6.15.0",
     "eslint-plugin-prettier": "3.1.4",
     "http2": "3.3.7",
     "jsdoc": "3.6.6",
     "mkdirp": "0.5.1",
     "mocha": "6.2.0",
-    "prettier": "1.18.2",
+    "prettier": "2.1.2",
     "serve-static": "1.14.1",
-    "terser": "5.3.5"
+    "terser": "5.3.8"
   },
   "homepage": "https://www.sitespeed.io/documentation/coach/",
   "license": "MIT",
@@ -78,7 +78,7 @@
     "filter-files": "0.4.0",
     "json-stable-stringify": "1.0.1",
     "lodash.groupby": "4.6.0",
-    "lodash.merge": "^4.6.2",
+    "lodash.merge": "4.6.2",
     "lodash.sortby": "4.7.0",
     "pagexray": "2.5.10",
     "third-party-web": "0.12.2"
