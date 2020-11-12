@@ -5,12 +5,19 @@
 * Added Element Timings, Paint Timings and Largest Contentful Paint [#16](https://github.com/sitespeedio/coach-core/pull/16).
 * Added CLS advice [#18](https://github.com/sitespeedio/coach-core/pull/18).
 * Added Long Task advice [#17](https://github.com/sitespeedio/coach-core/pull/17).
+* Added support for HTTP3 [#26](https://github.com/sitespeedio/coach-core/pull/26).
 
 ### Changed
 * Remove RUM Speed Index [#12](https://github.com/sitespeedio/coach-core/pull/12).
 * Remove First Paint and timings calculated from the Navigation Timing API [#15](https://github.com/sitespeedio/coach-core/pull/15).
+* Removed the advice for PUSH [#26](https://github.com/sitespeedio/coach-core/pull/26).
+
+### Tech
+* Use const/let instead of var [#24](https://github.com/sitespeedio/coach-core/pull/24) and [#25](https://github.com/sitespeedio/coach-core/pull/25).
+* Expose PageXray and third-party-web in the API [#23](https://github.com/sitespeedio/coach-core/pull/23).
 
 ### Fixed
+* Testing for JQuery removed the $ reference on the page [#22](https://github.com/sitespeedio/coach-core/pull/22).
 
 ## 5.1.1 - 2020-08-18
 ### Fixed
