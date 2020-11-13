@@ -6,6 +6,9 @@
 * Added CLS advice [#18](https://github.com/sitespeedio/coach-core/pull/18).
 * Added Long Task advice [#17](https://github.com/sitespeedio/coach-core/pull/17).
 * Added support for HTTP3 [#26](https://github.com/sitespeedio/coach-core/pull/26).
+* New info section where we share info third party statistics from third party web [#29](https://github.com/sitespeedio/coach-core/pull/29).
+* New technology section with where Wappalyzer is used to get info [#28](https://github.com/sitespeedio/coach-core/pull/28).
+
 
 ### Changed
 * Remove RUM Speed Index [#12](https://github.com/sitespeedio/coach-core/pull/12).
@@ -15,6 +18,7 @@
 ### Tech
 * Use const/let instead of var [#24](https://github.com/sitespeedio/coach-core/pull/24) and [#25](https://github.com/sitespeedio/coach-core/pull/25).
 * Expose PageXray and third-party-web in the API [#23](https://github.com/sitespeedio/coach-core/pull/23).
+* Updated dev dependencies.
 
 ### Fixed
 * Testing for JQuery removed the $ reference on the page [#22](https://github.com/sitespeedio/coach-core/pull/22).
