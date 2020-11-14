@@ -11,7 +11,6 @@ describe('Verify advice IDs', function() {
   it('We should have an ID that matches the file name', function() {
     const domAdviceDir = path.join(__dirname, '..', '..', 'lib', 'dom');
     const adviceCategoriesWithIds = [
-      'accessibility',
       'bestpractice',
       'performance'
     ];

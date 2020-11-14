@@ -5,7 +5,7 @@ const createTestRunner = require('../help/browsertimeRunner').createTestRunner,
   fs = require('fs'),
   path = require('path');
 
-let ADVICE_CATEGORIES = ['accessibility', 'bestpractice', 'performance'];
+let ADVICE_CATEGORIES = ['bestpractice', 'performance'];
 
 function assertKeys(result, filename) {
   const KEYS = [
