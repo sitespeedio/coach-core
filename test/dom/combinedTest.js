@@ -31,12 +31,6 @@ describe('Combined minified script [' + SCRIPT_NAME + ']', function() {
           assert.strictEqual(result.advice.performance.score > 0, true);
         });
       });
-
-      it('We should have an average score for accessibility', function() {
-        return runner.run(scriptPath, 'index.html').then(result => {
-          assert.strictEqual(result.advice.accessibility.score > 0, true);
-        });
-      });
     });
   });
 });
