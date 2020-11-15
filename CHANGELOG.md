@@ -15,7 +15,7 @@
 * Remove First Paint and timings calculated from the Navigation Timing API [#15](https://github.com/sitespeedio/coach-core/pull/15).
 * Removed the advice for PUSH [#26](https://github.com/sitespeedio/coach-core/pull/26).
 * Removed the accesibilty advice [#32](https://github.com/sitespeedio/coach-core/pull/32). If you are a sitespeed.io use `--axe`. It's better to use AXE-core that gives better advice than the old coach advice.
-
+* Fully use the third-party-web to know about third parties instead of home grown solution.
 
 ### Tech
 * Use const/let instead of var [#24](https://github.com/sitespeedio/coach-core/pull/24) and [#25](https://github.com/sitespeedio/coach-core/pull/25).
