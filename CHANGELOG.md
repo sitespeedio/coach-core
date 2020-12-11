@@ -8,8 +8,9 @@
 * Added support for HTTP3 [#26](https://github.com/sitespeedio/coach-core/pull/26).
 * New info section where we share info third party statistics from third party web [#29](https://github.com/sitespeedio/coach-core/pull/29).
 * New technology section with where Wappalyzer is used to get info [#28](https://github.com/sitespeedio/coach-core/pull/28).
-
-
+* Added advice to avoid third party cookies [#39](https://github.com/sitespeedio/coach-core/pull/39).
+* Upgraded to PageXray 3.0.0 [#38](https://github.com/sitespeedio/coach-core/pull/38).
+* Added advice to avoid fingerprinting [#37](https://github.com/sitespeedio/coach-core/pull/37).
 ### Changed
 * Remove RUM Speed Index [#12](https://github.com/sitespeedio/coach-core/pull/12).
 * Remove First Paint and timings calculated from the Navigation Timing API [#15](https://github.com/sitespeedio/coach-core/pull/15).
