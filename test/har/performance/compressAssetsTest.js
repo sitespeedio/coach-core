@@ -8,7 +8,7 @@ describe('Always compress text content', function() {
     return har.firstAdviceForTestFile('compressAssets.har').then(result => {
       assert.strictEqual(
         result.performance.adviceList.compressAssets.offending.length,
-        0
+        4
       );
       assert.strictEqual(
         result.performance.adviceList.compressAssets.score,
