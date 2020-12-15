@@ -84,7 +84,7 @@
     "lodash.merge": "4.6.2",
     "lodash.sortby": "4.7.0",
     "pagexray": "4.0.0",
-    "third-party-web": "0.12.2",
+    "third-party-web": "0.12.3",
     "wappalyzer-core": "6.4.17"
   }
 }
