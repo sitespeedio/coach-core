@@ -1,6 +1,6 @@
 # CHANGELOG - coach-core
 
-## 6.0.0 - UNRELEASED
+## 6.0.0 - 2020-12-18
 ### Added
 * Added Element Timings, Paint Timings and Largest Contentful Paint [#16](https://github.com/sitespeedio/coach-core/pull/16).
 * Added CLS advice [#18](https://github.com/sitespeedio/coach-core/pull/18).
