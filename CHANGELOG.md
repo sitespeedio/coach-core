@@ -1,5 +1,8 @@
 # CHANGELOG - coach-core
 
+## 6.0.1 - 2020-12-21
+### Fixed
+* Fixed the third party cookie advice description.
 ## 6.0.0 - 2020-12-18
 ### Added
 * Added Element Timings, Paint Timings and Largest Contentful Paint [#16](https://github.com/sitespeedio/coach-core/pull/16).
