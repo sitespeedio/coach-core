@@ -43,7 +43,7 @@
     "terser": "terser dist/coach.js --compress side_effects=false,negate_iife=false --mangle > dist/coach.min.js"
   },
   "devDependencies": {
-    "browsertime": "10.6.5",
+    "browsertime": "11.5.0",
     "bluebird": "3.7.2",
     "bookmarkletify": "^1.0.0",
     "chai": "^4.2.0",
