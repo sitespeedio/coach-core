@@ -1,5 +1,8 @@
 # CHANGELOG - coach-core
 
+## 6.1.0 - 2021-02-22
+### Added 
+* Added new privacy check that checks if Google reCAPTCHA is used [#49](https://github.com/sitespeedio/coach-core/pull/49).
 ## 6.0.1 - 2020-12-21
 ### Fixed
 * Fixed the third party cookie advice description.
