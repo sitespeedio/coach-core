@@ -1,5 +1,8 @@
 # CHANGELOG - coach-core
 
+## 6.2.0 - 2021-04-08
+### Added 
+* Updated to PageXray 4.1.0 and wappalyzer-core 6.5.32 [#51](https://github.com/sitespeedio/coach-core/pull/51).
 ## 6.1.0 - 2021-02-22
 ### Added 
 * Added new privacy check that checks if Google reCAPTCHA is used [#49](https://github.com/sitespeedio/coach-core/pull/49).
