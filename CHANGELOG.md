@@ -1,5 +1,8 @@
 # CHANGELOG - coach-core
 
+## 6.3.0 - 2021-04-09
+### Added
+* New privacy advice that looks for header to disable of FLoC in Chrome.
 ## 6.2.0 - 2021-04-08
 ### Added 
 * Updated to PageXray 4.1.0 and wappalyzer-core 6.5.32 [#51](https://github.com/sitespeedio/coach-core/pull/51).
