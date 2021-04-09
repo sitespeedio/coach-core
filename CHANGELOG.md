@@ -1,5 +1,8 @@
 # CHANGELOG - coach-core
 
+## 6.3.1 - 2021-04-09
+### Fixed
+* Better check for the new FLoC privacy advice.
 ## 6.3.0 - 2021-04-09
 ### Added
 * New privacy advice that looks for header to disable of FLoC in Chrome.
