@@ -1,6 +1,6 @@
 # CHANGELOG - coach-core
 
-## 6.3.2 - UNRELEASED
+## 6.3.2 - 2021-04-13
 ### Fixed
 * Catch when you test a URL without a domain see https://github.com/sitespeedio/sitespeed.io/issues/3043
 ## 6.3.1 - 2021-04-09
