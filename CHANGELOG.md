@@ -1,5 +1,7 @@
 # CHANGELOG - coach-core
-
+## 6.3.3 - 2021-04-14
+### Fixed
+* Updated the link about FLOC to use https://www.eff.org/deeplinks/2021/03/googles-floc-terrible-idea.
 ## 6.3.2 - 2021-04-13
 ### Fixed
 * Catch when you test a URL without a domain see https://github.com/sitespeedio/sitespeed.io/issues/3043
