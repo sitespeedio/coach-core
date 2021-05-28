@@ -1,4 +1,8 @@
 # CHANGELOG - coach-core
+
+## UNRELEASED
+### Added 
+* Updated to PageXray 4.2.0 that adds support for getting render blocking info in Chrome.
 ## 6.3.3 - 2021-04-14
 ### Fixed
 * Updated the link about FLOC to use https://www.eff.org/deeplinks/2021/03/googles-floc-terrible-idea.
