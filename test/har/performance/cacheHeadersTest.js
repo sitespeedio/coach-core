@@ -10,7 +10,7 @@ describe('Use cache headers', function() {
       // massive
       assert.strictEqual(
         result.performance.adviceList.cacheHeaders.offending.length,
-        49
+        45
       );
     });
   });
