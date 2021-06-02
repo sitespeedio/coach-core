@@ -1,8 +1,13 @@
 # CHANGELOG - coach-core
 
-## UNRELEASED
+## 6.4.0 - 2021-06-02
 ### Added 
 * Updated to PageXray 4.2.0 that adds support for getting render blocking info in Chrome.
+* Update wappalyzer-core from 6.5.32 to 6.6.0 [#57](https://github.com/sitespeedio/coach-core/pull/57)
+
+### Fixed
+* Only look for GET request for private and caching headers [#55](https://github.com/sitespeedio/coach-core/pull/55). See [#53](https://github.com/sitespeedio/coach-core/issues/53).
+
 ## 6.3.3 - 2021-04-14
 ### Fixed
 * Updated the link about FLOC to use https://www.eff.org/deeplinks/2021/03/googles-floc-terrible-idea.
