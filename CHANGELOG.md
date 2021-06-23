@@ -1,5 +1,9 @@
 # CHANGELOG - coach-core
 
+
+## 6.4.1 - 2021-06-23
+### Fixed
+* Use all headers for Wappalyzer (before only the main document was used) [#60](https://github.com/sitespeedio/coach-core/pull/60).
 ## 6.4.0 - 2021-06-02
 ### Added 
 * Updated to PageXray 4.2.0 that adds support for getting render blocking info in Chrome.
