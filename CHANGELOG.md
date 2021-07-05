@@ -1,6 +1,9 @@
 # CHANGELOG - coach-core
 
+## 6.4.2 - 2021-07-05
 
+### Fixed
+* Make sure JQuery refs are set back to original ref [#62](https://github.com/sitespeedio/coach-core/pull/62) see [#61](https://github.com/sitespeedio/coach-core/issues/61).
 ## 6.4.1 - 2021-06-23
 ### Fixed
 * Use all headers for Wappalyzer (before only the main document was used) [#60](https://github.com/sitespeedio/coach-core/pull/60).
