@@ -1,5 +1,9 @@
 # CHANGELOG - coach-core
 
+
+## 6.4.3 - 2021-07-21
+### Fixed
+* Updated to latest PageXray.
 ## 6.4.2 - 2021-07-05
 
 ### Fixed
