@@ -3,6 +3,7 @@
 ## UNRELEASED
 ### Fixed
 * Fix cases when Jquery is undefined. Thank you [shubham jajodia](https://github.com/jajo-shubham) for PR [#64](https://github.com/sitespeedio/coach-core/pull/64).
+* A better way to find offending layout shifters. Thank you [shubham jajodia](https://github.com/jajo-shubham) for PR [#65](https://github.com/sitespeedio/coach-core/pull/65).
 
 ## 6.4.3 - 2021-07-21
 ### Fixed
