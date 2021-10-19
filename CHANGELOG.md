@@ -1,5 +1,8 @@
 # CHANGELOG - coach-core
 
+## UNRELEASED
+### Fixed
+* Fix cases when Jquery is undefined. Thank you [shubham jajodia](https://github.com/jajo-shubham) for PR [#64](https://github.com/sitespeedio/coach-core/pull/64).
 
 ## 6.4.3 - 2021-07-21
 ### Fixed
