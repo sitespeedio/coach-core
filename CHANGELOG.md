@@ -5,6 +5,8 @@
 * Fix cases when Jquery is undefined. Thank you [shubham jajodia](https://github.com/jajo-shubham) for PR [#64](https://github.com/sitespeedio/coach-core/pull/64).
 * A better way to find offending layout shifters. Thank you [shubham jajodia](https://github.com/jajo-shubham) for PR [#65](https://github.com/sitespeedio/coach-core/pull/65).
 
+### Added
+* Updated third-party-web to 0.12.6.
 ## 6.4.3 - 2021-07-21
 ### Fixed
 * Updated to latest PageXray and Third patrty web 0.12.4.
