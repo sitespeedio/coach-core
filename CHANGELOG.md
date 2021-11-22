@@ -4,6 +4,7 @@
 ### Added
 * Updated third-party-web to 0.12.6.
 * Use Chrome(ium) render blocking information to know if a request is render blocking or not [#66](https://github.com/sitespeedio/coach-core/pull/66).
+* Report offending JavaScript assets if the JavaScript max limits kicks in [#70](https://github.com/sitespeedio/coach-core/pull/70).
 
 ### Changed
 * Moved AMP advice to best practice instead of privacy [#67](https://github.com/sitespeedio/coach-core/pull/67).
@@ -12,6 +13,7 @@
 * Fix cases when JQuery is undefined. Thank you [shubham jajodia](https://github.com/jajo-shubham) for PR [#64](https://github.com/sitespeedio/coach-core/pull/64).
 * A better way to find offending layout shifters. Thank you [shubham jajodia](https://github.com/jajo-shubham) for PR [#65](https://github.com/sitespeedio/coach-core/pull/65).
 * Removed mentions on server push [#69](https://github.com/sitespeedio/coach-core/pull/69)
+* Added more information on how to debug CPU advice [#71](https://github.com/sitespeedio/coach-core/pull/71).
 ## 6.4.3 - 2021-07-21
 ### Fixed
 * Updated to latest PageXray and Third patrty web 0.12.4.
