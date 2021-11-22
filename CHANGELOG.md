@@ -7,9 +7,11 @@
 
 ### Changed
 * Moved AMP advice to best practice instead of privacy [#67](https://github.com/sitespeedio/coach-core/pull/67).
+* Increased favicon max size from 5 to 10 kb [#68](https://github.com/sitespeedio/coach-core/pull/68)
 ### Fixed
 * Fix cases when JQuery is undefined. Thank you [shubham jajodia](https://github.com/jajo-shubham) for PR [#64](https://github.com/sitespeedio/coach-core/pull/64).
 * A better way to find offending layout shifters. Thank you [shubham jajodia](https://github.com/jajo-shubham) for PR [#65](https://github.com/sitespeedio/coach-core/pull/65).
+* Removed mentions on server push [#69](https://github.com/sitespeedio/coach-core/pull/69)
 ## 6.4.3 - 2021-07-21
 ### Fixed
 * Updated to latest PageXray and Third patrty web 0.12.4.
