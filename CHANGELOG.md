@@ -9,6 +9,9 @@
 ### Changed
 * Moved AMP advice to best practice instead of privacy [#67](https://github.com/sitespeedio/coach-core/pull/67).
 * Increased favicon max size from 5 to 10 kb [#68](https://github.com/sitespeedio/coach-core/pull/68)
+* Renamed the fastRender advice to avoidRenderBlocking [#73](https://github.com/sitespeedio/coach-core/pull/73)
+* Remove the third party async advise [#74](https://github.com/sitespeedio/coach-core/pull/74)
+
 ### Fixed
 * Fix cases when JQuery is undefined. Thank you [shubham jajodia](https://github.com/jajo-shubham) for PR [#64](https://github.com/sitespeedio/coach-core/pull/64).
 * A better way to find offending layout shifters. Thank you [shubham jajodia](https://github.com/jajo-shubham) for PR [#65](https://github.com/sitespeedio/coach-core/pull/65).
