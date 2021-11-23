@@ -253,10 +253,10 @@
           "title": "Do not load print stylesheets, use @media type print instead",
           "weight": 1
         },
-        "fastRender": {
+        "avoidRenderBlocking": {
           "advice": "",
           "description": "Every file requested inside of head will postpone the rendering of the page. Try to avoid loading JavaScript synchronously, request files from the same domain as the main document, and inline CSS or server push for really fast rendering.",
-          "id": "fastRender",
+          "id": "avoidRenderBlocking",
           "offending": [],
           "score": 100,
           "tags": [
