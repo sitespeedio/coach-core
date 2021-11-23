@@ -18,7 +18,7 @@ describe('Fast render advice HTTP/2:', function() {
       it('We should know that synchronous JavaScript makes the page render slower', function() {
         return runner
           .runGlobalServer(
-            'fastRender.js',
+            'avoidRenderBlocking.js',
             'https://www.sitespeed.io/testcases/performance/fastrender/avoidJSSyncInHead.html'
           )
           .then(result => {
@@ -30,7 +30,7 @@ describe('Fast render advice HTTP/2:', function() {
       it('We should know that loading JavaScript asynchronously is OK', function() {
         return runner
           .runGlobalServer(
-            'fastRender.js',
+            'avoidRenderBlocking.js',
             'https://www.sitespeed.io/testcases/performance/fastrender/jsAsyncIsOk.html'
           )
           .then(result => {
@@ -41,7 +41,7 @@ describe('Fast render advice HTTP/2:', function() {
       it('We should know that loading too large CSS files is not OK', function() {
         return runner
           .runGlobalServer(
-            'fastRender.js',
+            'avoidRenderBlocking.js',
             'https://www.sitespeed.io/testcases/performance/fastrender/tooLargeCSS.html'
           )
           .then(result => {
