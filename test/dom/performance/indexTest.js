@@ -35,12 +35,6 @@ describe('Performance advice HTTP/1:', function() {
         });
       });
 
-      it('We should find out if we load third-party JS synchronously', function() {
-        return runner.run('thirdPartyAsyncJs.js').then(result => {
-          assert.strictEqual(result.offending.length, 1);
-        });
-      });
-
       it('Multiple jQuery versions that exist on the same page should be reported', function() {
         return runner.run('jquery.js').then(result => {
           assert.strictEqual(result.offending.length, 2);
