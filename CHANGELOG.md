@@ -7,7 +7,7 @@
 * Report offending JavaScript assets if the JavaScript max limits kicks in [#70](https://github.com/sitespeedio/coach-core/pull/70).
 * New largest contentful paint advice [#76](https://github.com/sitespeedio/coach-core/pull/76).
 * New first contentful paint advice [#77](https://github.com/sitespeedio/coach-core/pull/77).
-
+* Added TBT in the CPU longtask advice [#80](https://github.com/sitespeedio/coach-core/pull/80)
 ### Changed
 * Moved AMP advice to best practice instead of privacy [#67](https://github.com/sitespeedio/coach-core/pull/67).
 * Increased favicon max size from 5 to 10 kb [#68](https://github.com/sitespeedio/coach-core/pull/68)
@@ -19,8 +19,9 @@
 ### Fixed
 * Fix cases when JQuery is undefined. Thank you [shubham jajodia](https://github.com/jajo-shubham) for PR [#64](https://github.com/sitespeedio/coach-core/pull/64).
 * A better way to find offending layout shifters. Thank you [shubham jajodia](https://github.com/jajo-shubham) for PR [#65](https://github.com/sitespeedio/coach-core/pull/65).
-* Removed mentions on server push [#69](https://github.com/sitespeedio/coach-core/pull/69)
+* Removed mentions aboout server push [#69](https://github.com/sitespeedio/coach-core/pull/69)
 * Added more information on how to debug CPU advice [#71](https://github.com/sitespeedio/coach-core/pull/71).
+
 ## 6.4.3 - 2021-07-21
 ### Fixed
 * Updated to latest PageXray and Third patrty web 0.12.4.
