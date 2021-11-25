@@ -7,7 +7,9 @@
 * Report offending JavaScript assets if the JavaScript max limits kicks in [#70](https://github.com/sitespeedio/coach-core/pull/70).
 * New largest contentful paint advice [#76](https://github.com/sitespeedio/coach-core/pull/76).
 * New first contentful paint advice [#77](https://github.com/sitespeedio/coach-core/pull/77).
-* Added TBT in the CPU longtask advice [#80](https://github.com/sitespeedio/coach-core/pull/80)
+* Added TBT in the CPU longtask advice [#80](https://github.com/sitespeedio/coach-core/pull/80).
+* Report content and transfer size for offending URLs [#81](https://github.com/sitespeedio/coach-core/pull/81).
+* Report offending assets with transfer/content size for page size limit [#82](https://github.com/sitespeedio/coach-core/pull/82).
 ### Changed
 * Moved AMP advice to best practice instead of privacy [#67](https://github.com/sitespeedio/coach-core/pull/67).
 * Increased favicon max size from 5 to 10 kb [#68](https://github.com/sitespeedio/coach-core/pull/68)
