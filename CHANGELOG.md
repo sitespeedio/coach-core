@@ -1,6 +1,14 @@
 # CHANGELOG - coach-core
 
-## 7.0.0 - UNRELEASED
+## 7.0.0 - 2021-12-01
+
+### Changed
+* Moved AMP advice to best practice instead of privacy [#67](https://github.com/sitespeedio/coach-core/pull/67).
+* Increased favicon max size advice from 5 to 10 kb [#68](https://github.com/sitespeedio/coach-core/pull/68)
+* Renamed the fastRender advice to avoidRenderBlocking [#73](https://github.com/sitespeedio/coach-core/pull/73)
+* Remove the third party async advice [#74](https://github.com/sitespeedio/coach-core/pull/74)
+* Updated the layout shift advice to use cumulative layout shift [#75](https://github.com/sitespeedio/coach-core/pull/75)
+* Changed id of the Google Tag Manager advice [#79](https://github.com/sitespeedio/coach-core/pull/79)
 ### Added
 * Updated third-party-web to 0.12.6.
 * Use Chrome(ium) render blocking information to know if a request is render blocking or not [#66](https://github.com/sitespeedio/coach-core/pull/66).
@@ -10,13 +18,6 @@
 * Added TBT in the CPU longtask advice [#80](https://github.com/sitespeedio/coach-core/pull/80).
 * Report content and transfer size for offending URLs [#81](https://github.com/sitespeedio/coach-core/pull/81).
 * Report offending assets with transfer/content size for page size limit [#82](https://github.com/sitespeedio/coach-core/pull/82).
-### Changed
-* Moved AMP advice to best practice instead of privacy [#67](https://github.com/sitespeedio/coach-core/pull/67).
-* Increased favicon max size from 5 to 10 kb [#68](https://github.com/sitespeedio/coach-core/pull/68)
-* Renamed the fastRender advice to avoidRenderBlocking [#73](https://github.com/sitespeedio/coach-core/pull/73)
-* Remove the third party async advice [#74](https://github.com/sitespeedio/coach-core/pull/74)
-* Updated the layout shift advice to use cumulative layout shift [#75](https://github.com/sitespeedio/coach-core/pull/75)
-* Changed id of the Google Tag Manager advice [#79](https://github.com/sitespeedio/coach-core/pull/79)
 
 ### Fixed
 * Fix cases when JQuery is undefined. Thank you [shubham jajodia](https://github.com/jajo-shubham) for PR [#64](https://github.com/sitespeedio/coach-core/pull/64).
