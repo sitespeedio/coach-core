@@ -1,4 +1,7 @@
 # CHANGELOG - coach-core
+## UNRELEASED
+### Added
+* Upgraded to PageXray v4.0.0.
 
 ## 7.0.0 - 2021-12-01
 
