@@ -43,7 +43,7 @@
     "terser": "terser dist/coach.js --compresss --mangle --format wrap_iife=true --parse acorn > dist/coach.min.js"
   },
   "devDependencies": {
-    "browsertime": "14.11.0",
+    "browsertime": "14.19.2",
     "bluebird": "3.7.2",
     "bookmarkletify": "^1.0.0",
     "chai": "^4.3.4",
@@ -81,7 +81,7 @@
     "lodash.merge": "4.6.2",
     "lodash.sortby": "4.7.0",
     "pagexray": "4.4.0",
-    "third-party-web": "0.12.6",
+    "third-party-web": "0.13.0",
     "wappalyzer-core": "6.6.0"
   }
 }
