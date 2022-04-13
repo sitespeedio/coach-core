@@ -1,6 +1,6 @@
 # CHANGELOG - coach-core
 
-## 7.1.1 - 2022-04-11
+## 7.1.1 - 2022-04-13
 ### Fixed
 * Upgraded to PageXray 4.4.1 and Third Party Web 0.15.0.
 
