@@ -1,5 +1,9 @@
 # CHANGELOG - coach-core
 
+
+## 7.1.3 - 2023-01-08
+### Fixed
+* Fixed exporting to work with ESM modules too.
 ## 7.1.2 - 2022-05-05
 ### Fixed
 * Upgraded to PageXray 4.4.2 and Third Party Web 0.17.1.
