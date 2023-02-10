@@ -1,7 +1,7 @@
 # CHANGELOG - coach-core
 
 
-## 7.1.3 - 2023-01-08
+## 7.1.3 - 2023-02-10
 ### Fixed
 * Fixed exporting to work with ESM modules too.
 ## 7.1.2 - 2022-05-05
