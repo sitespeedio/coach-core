@@ -43,16 +43,15 @@
     "terser": "terser dist/coach.js --compresss --mangle --format wrap_iife=true --parse acorn > dist/coach.min.js"
   },
   "devDependencies": {
-    "browsertime": "14.19.2",
+    "browsertime": "16.17.0",
     "bluebird": "3.7.2",
     "bookmarkletify": "^1.0.0",
-    "chai": "^4.3.4",
+    "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
     "connect": "^3.7.0",
     "eslint": "8.3.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "4.0.0",
-    "http2": "3.3.7",
     "jsdoc": "3.6.7",
     "mkdirp": "0.5.1",
     "mocha": "6.2.0",
