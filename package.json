@@ -43,7 +43,7 @@
     "terser": "terser dist/coach.js --compresss --mangle --format wrap_iife=true --parse acorn > dist/coach.min.js"
   },
   "devDependencies": {
-    "browsertime": "16.17.0",
+    "browsertime": "17.11.0",
     "bluebird": "3.7.2",
     "bookmarkletify": "^1.0.0",
     "chai": "^4.3.7",
