@@ -8,8 +8,8 @@ let BROWSERS = ['chrome', 'firefox'];
 
 describe('info - h2', function() {
   BROWSERS.forEach(function(browser) {
-    describe('browser: ' + browser, function() {
-      const runner = createTestRunner(browser, 'info', true);
+    describe('browser: ' + browser, async function() {
+      const runner = await createTestRunner(browser, 'info', true);
 
       before(() => runner.start(browser));
 
