@@ -10,8 +10,8 @@ describe('Timings', function() {
   this.timeout(60000);
 
   BROWSERS.forEach(function(browser) {
-    describe('browser: ' + browser, function() {
-      const runner = createTestRunner(browser, 'timings');
+    describe('browser: ' + browser, async function() {
+      const runner = await createTestRunner(browser, 'timings');
 
       before(() => runner.start(browser));
 

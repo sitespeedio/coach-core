@@ -1,7 +1,6 @@
 'use strict';
 
 let Promise = require('bluebird'),
-  browsertime = require('browsertime'),
   urlParser = require('url'),
   fs = require('fs'),
   webserver = require('./webserver'),
@@ -9,7 +8,6 @@ let Promise = require('bluebird'),
 
 Promise.promisifyAll(fs);
 
-browsertime.logging.configure({});
 
 function getScript(ruleFileName, category) {
   const domPath = path.resolve(__dirname, '..', '..', 'lib', 'dom'),
@@ -26,7 +24,7 @@ function getScript(ruleFileName, category) {
 }
 
 module.exports = {
-  createTestRunner(browser, category, useHttp2) {
+  async createTestRunner(browser, category, useHttp2) {
     function run(url, script) {
       return Promise.resolve(script).then(script =>
         runner
@@ -46,7 +44,8 @@ module.exports = {
       config.xvfb = true
     }
 
-    const runner = new browsertime.SeleniumRunner(config
+    const  { BrowsertimeEngine }  = await import('browsertime');
+    const runner = new BrowsertimeEngine(config
     );
 
     let baseUrl;

@@ -32,7 +32,7 @@ function createServer(useHttp2) {
 let server;
 
 module.exports = {
-  startServer(useHttp2) {
+  async startServer(useHttp2) {
     if (!server) {
       server = createServer(useHttp2);
     }
@@ -43,7 +43,7 @@ module.exports = {
         .on('listening', () => resolve(server.address()));
     });
   },
-  stopServer() {
+  async stopServer() {
     return Promise.resolve(server.close()).finally(() => {
       server = undefined;
     });

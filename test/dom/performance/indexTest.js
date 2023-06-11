@@ -10,8 +10,8 @@ describe('Performance advice HTTP/1:', function() {
   this.timeout(60000);
 
   BROWSERS.forEach(function(browser) {
-    describe('browser: ' + browser, function() {
-      const runner = createTestRunner(browser, 'performance');
+    describe('browser: ' + browser, async function() {
+      const runner = await createTestRunner(browser, 'performance');
 
       before(() => runner.start(browser));
 

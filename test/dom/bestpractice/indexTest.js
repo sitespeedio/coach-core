@@ -10,8 +10,8 @@ describe('Best practice', function() {
   this.timeout(60000);
 
   BROWSERS.forEach(function(browser) {
-    describe('browser: ' + browser, function() {
-      const runner = createTestRunner(browser, 'bestpractice');
+    describe('browser: ' + browser, async function() {
+      const runner = await createTestRunner(browser, 'bestpractice');
 
       before(() => runner.start(browser));
 

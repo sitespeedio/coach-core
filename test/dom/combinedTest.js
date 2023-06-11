@@ -13,8 +13,8 @@ describe('Combined minified script [' + SCRIPT_NAME + ']', function() {
   this.timeout(60000);
 
   BROWSERS.forEach(function(browser) {
-    describe('browser: ' + browser, function() {
-      const runner = createTestRunner(browser, 'combined');
+    describe('browser: ' + browser, async function() {
+      const runner = await createTestRunner(browser, 'combined');
 
       before(() => runner.start(browser));
 
