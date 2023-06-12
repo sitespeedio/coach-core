@@ -1,8 +1,8 @@
 # The Coach - core
 
-[![Build status][travis-image]][travis-url]
+![Unit tests](https://github.com/sitespeedio/coach-core/workflows/unittests/badge.svg?branch=main)
 
-[Documentation](https://www.sitespeed.io/documentation/coach/) | [Changelog](https://github.com/sitespeedio/coach-core/blob/master/CHANGELOG.md)
+[Documentation](https://www.sitespeed.io/documentation/coach/) | [Changelog](https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md)
 
 ![The coach](img/coach.png)
 
