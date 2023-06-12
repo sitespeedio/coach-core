@@ -3,7 +3,7 @@
 ## 7.2.0 - 2023-06-12
 ### Added
 * Upgraded to third party web 0.23.0. [#98](https://github.com/sitespeedio/coach-core/pull/98).
-
+* Upgraded to latest wappalyzer [#100](https://github.com/sitespeedio/coach-core/pull/100).
 ### Fixed
 * Make sure to skip advice if Chrome is missing FCP [#95](https://github.com/sitespeedio/coach-core/pull/95).
 * Update dev dependencies
