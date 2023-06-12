@@ -1,6 +1,6 @@
 # The Coach - core
 
-![Unit tests](https://github.com/sitespeedio/coach-core/workflows/unittests/badge.svg?branch=main)
+![Unit tests](https://github.com/sitespeedio/coach-core/workflows/Unit%20tests/badge.svg?branch=main)
 
 [Documentation](https://www.sitespeed.io/documentation/coach/) | [Changelog](https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md)
 
