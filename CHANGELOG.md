@@ -1,5 +1,12 @@
 # CHANGELOG - coach-core
 
+## 7.2.0 - 2023-06-12
+### Added
+* Upgraded to third party web 0.23.0. [#98](https://github.com/sitespeedio/coach-core/pull/98).
+
+### Fixed
+* Make sure to skip advice if Chrome is missing FCP [#95](https://github.com/sitespeedio/coach-core/pull/95).
+* Update dev dependencies
 
 ## 7.1.3 - 2023-02-10
 ### Fixed
