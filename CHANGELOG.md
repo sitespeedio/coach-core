@@ -1,5 +1,9 @@
 # CHANGELOG - coach-core
 
+## 7.2.1 - 2023-06-22
+### Fixed
+* Catch if local storage or session storage isn't accessible. 
+
 ## 7.2.0 - 2023-06-12
 ### Added
 * Upgraded to third party web 0.23.0. [#98](https://github.com/sitespeedio/coach-core/pull/98).
