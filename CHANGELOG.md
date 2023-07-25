@@ -1,5 +1,7 @@
 # CHANGELOG - coach-core
 
+## 8.0.0 - UNRELEASED - 2023 updates
+
 ## 7.2.1 - 2023-06-22
 ### Fixed
 * Catch if local storage or session storage isn't accessible. 
