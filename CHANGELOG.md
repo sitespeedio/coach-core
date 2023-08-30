@@ -1,6 +1,6 @@
 # CHANGELOG - coach-core
 
-## 8.0.0 - UNRELEASED - 2023 updates
+## 8.0.0 - 2023-08-30
 ### Added
 * Expose third party web and wappalyzer versions [#111](https://github.com/sitespeedio/coach-core/pull/111).
 
