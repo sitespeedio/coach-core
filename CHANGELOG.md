@@ -1,6 +1,16 @@
 # CHANGELOG - coach-core
 
 ## 8.0.0 - UNRELEASED - 2023 updates
+### Added
+* Expose third party web and wappalyzer versions [#111](https://github.com/sitespeedio/coach-core/pull/111).
+
+### Fixed
+* Updated to Wappalyzer 6.10.66 [#110](https://github.com/sitespeedio/coach-core/pull/110).
+* Updated third party web 0.24.0 [#108](https://github.com/sitespeedio/coach-core/pull/108).
+* Fix correct LCP attribute [#107](https://github.com/sitespeedio/coach-core/pull/107).
+
+### Changed
+* Remove advice about disableFLoCHeader [#106](https://github.com/sitespeedio/coach-core/pull/106).
 
 ## 7.2.1 - 2023-06-22
 ### Fixed
