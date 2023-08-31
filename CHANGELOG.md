@@ -1,5 +1,9 @@
 # CHANGELOG - coach-core
 
+## 8.0.2 - 2023-08-31
+### Fixed
+* Another update to PageXray with a safer HTTP header check.
+
 ## 8.0.1 - 2023-08-31
 ### Fixed
 * Updated PageXray.
