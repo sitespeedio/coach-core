@@ -1,5 +1,13 @@
 # CHANGELOG - coach-core
 
+## 8.1.0 - UNRELEASED
+### Added
+* Use latest data from https://github.com/enthec/webappanalyzer [#114](https://github.com/sitespeedio/coach-core/pull/114).
+* Use third part web 0.26.2 [#113](https://github.com/sitespeedio/coach-core/pull/113)
+
+### Fixed
+* Update dev dependencies  [#115](https://github.com/sitespeedio/coach-core/pull/115),  [#116](https://github.com/sitespeedio/coach-core/pull/116) and [#117](https://github.com/sitespeedio/coach-core/pull/117).
+
 ## 8.0.2 - 2023-08-31
 ### Fixed
 * Another update to PageXray with a safer HTTP header check.
