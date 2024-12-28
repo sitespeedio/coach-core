@@ -1,4 +1,7 @@
 # CHANGELOG - coach-core
+## 8.1.1 - 2024-12-28
+### Fixed
+* Fix broken minified release.
 
 ## 8.1.0 - 2024-12-28
 ### Added
