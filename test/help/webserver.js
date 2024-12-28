@@ -44,8 +44,17 @@ module.exports = {
     });
   },
   async stopServer() {
-    return Promise.resolve(server.close()).finally(() => {
-      server = undefined;
-    });
+    if (server) {
+      return new Promise((resolve, reject) => {
+        server.close(err => {
+          if (err) {
+            return reject(err);
+          }
+          server = undefined;
+          resolve();
+        });
+      });
+    }
+    return Promise.resolve(); // No server to stop
   }
 };
