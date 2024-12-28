@@ -1,6 +1,6 @@
 # CHANGELOG - coach-core
 
-## 8.1.0 - UNRELEASED
+## 8.1.0 - 2024-12-28
 ### Added
 * Use latest data from https://github.com/enthec/webappanalyzer [#114](https://github.com/sitespeedio/coach-core/pull/114).
 * Use third part web 0.26.2 [#113](https://github.com/sitespeedio/coach-core/pull/113)
