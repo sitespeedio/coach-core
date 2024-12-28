@@ -52,12 +52,12 @@
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "jsdoc": "^4.0.2",
+    "jsdoc": "^4.0.4",
     "mkdirp": "^3.0.1",
     "mocha": "^10.2.0",
     "prettier": "^2.8.8",
-    "serve-static": "^1.15.0",
-    "terser": "^5.19.2"
+    "serve-static": "^1.16.2",
+    "terser": "^5.37.0"
   },
   "homepage": "https://www.sitespeed.io/documentation/coach/",
   "license": "MIT",
