@@ -37,7 +37,6 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-    "travis": "npm run eslint-check && npm run lint && npm run test",
     "prepare": "npm run combine && npm run terser && npm run jsdoc",
     "gen-dist": "npm run combine && npm run terser",
     "terser": "terser dist/coach.js --compress --mangle --format wrap_iife=true --parse acorn > dist/coach.min.js"
