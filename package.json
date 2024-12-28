@@ -33,13 +33,12 @@
     "test:merge": "mocha --recursive test/merge",
     "pretest": "npm run combine && npm run terser",
     "test": "mocha --recursive test/api test/dom test/har test/merge",
-    "jsdoc": "jsdoc -R README.md -r -d dist/doc lib",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-    "prepare": "npm run combine && npm run terser && npm run jsdoc",
+    "prepare": "npm run combine && npm run terser",
     "gen-dist": "npm run combine && npm run terser",
-    "terser": "terser dist/coach.js --compress --mangle --format wrap_iife=true --parse acorn > dist/coach.min.js"
+    "terser": "terser dist/coach.js --compresss --mangle --format wrap_iife=true --parse acorn > dist/coach.min.js"
   },
   "devDependencies": {
     "browsertime": "23.5.0",
@@ -51,7 +50,6 @@
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "jsdoc": "^4.0.4",
     "mkdirp": "^3.0.1",
     "mocha": "^10.2.0",
     "prettier": "^3.4.2",
