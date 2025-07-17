@@ -12,7 +12,7 @@
   ],
   "main": "./lib/index.js",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=20.0.0"
   },
   "files": [
     "lib",
@@ -41,7 +41,7 @@
     "terser": "terser dist/coach.js --compresss --mangle --format wrap_iife=true --parse acorn > dist/coach.min.js"
   },
   "devDependencies": {
-    "browsertime": "23.5.0",
+    "browsertime": "25.0.0",
     "bluebird": "3.7.2",
     "bookmarkletify": "^1.0.0",
     "chai": "^4.3.7",
