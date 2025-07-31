@@ -44,7 +44,7 @@ module.exports = {
       config.xvfb = true
     }
 
-    const  { BrowsertimeEngine }  = await import('browsertime');
+    const  { BrowsertimeEngine } = await import('browsertime');
     const runner = new BrowsertimeEngine(config
     );
 
