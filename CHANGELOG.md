@@ -1,4 +1,11 @@
 # CHANGELOG - coach-core
+
+## 8.1.2 - 2025-08-01
+### Fixed
+* Don't check svg images in avoidScalingImages check, thank you [Marcus Müller](https://github.com/M-arcus) for PR [#129](https://github.com/sitespeedio/coach-core/pull/129).
+* Add zstd to encoding check, thank you [Marcus Müller](https://github.com/M-arcus) for PR [#128](https://github.com/sitespeedio/coach-core/pull/128).
+* Make sure we use wappalyzer that is MIT [#133](https://github.com/sitespeedio/coach-core/pull/133).
+
 ## 8.1.1 - 2024-12-28
 ### Fixed
 * Fix broken minified release.
