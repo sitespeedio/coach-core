@@ -1,5 +1,9 @@
 # CHANGELOG - coach-core
 
+## 8.1.3 - 2025-08-04
+### Fixed
+* Reverted svg images in avoidScalingImages check released in 8.1.2 since it was causing errors. Lets work on a fir for it later and revert it for now [#135](https://github.com/sitespeedio/coach-core/pull/135).
+
 ## 8.1.2 - 2025-08-01
 ### Fixed
 * Don't check svg images in avoidScalingImages check, thank you [Marcus Müller](https://github.com/M-arcus) for PR [#129](https://github.com/sitespeedio/coach-core/pull/129).
@@ -40,7 +44,7 @@
 
 ## 7.2.1 - 2023-06-22
 ### Fixed
-* Catch if local storage or session storage isn't accessible. 
+* Catch if local storage or session storage isn't accessible.
 
 ## 7.2.0 - 2023-06-12
 ### Added
@@ -100,7 +104,7 @@
 ### Fixed
 * Use all headers for Wappalyzer (before only the main document was used) [#60](https://github.com/sitespeedio/coach-core/pull/60).
 ## 6.4.0 - 2021-06-02
-### Added 
+### Added
 * Updated to PageXray 4.2.0 that adds support for getting render blocking info in Chrome.
 * Update wappalyzer-core from 6.5.32 to 6.6.0 [#57](https://github.com/sitespeedio/coach-core/pull/57)
 
@@ -120,10 +124,10 @@
 ### Added
 * New privacy advice that looks for header to disable of FLoC in Chrome.
 ## 6.2.0 - 2021-04-08
-### Added 
+### Added
 * Updated to PageXray 4.1.0 and wappalyzer-core 6.5.32 [#51](https://github.com/sitespeedio/coach-core/pull/51).
 ## 6.1.0 - 2021-02-22
-### Added 
+### Added
 * Added new privacy check that checks if Google reCAPTCHA is used [#49](https://github.com/sitespeedio/coach-core/pull/49).
 ## 6.0.1 - 2020-12-21
 ### Fixed
