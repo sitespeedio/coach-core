@@ -8,7 +8,7 @@ describe('Check for technology', function() {
     return har.firstAdviceForTestFile('withHtmlContent.har').then(result => {
       assert.strictEqual(
         result.info.technology.length,
-        6
+        7
       );
     });
   });
