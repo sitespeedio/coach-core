@@ -1,7 +1,5 @@
-'use strict';
-
-let assert = require('assert');
-let har = require('../../help/har');
+import assert from 'node:assert';
+import har from '../../help/har.js';
 
 describe("Don't let the CSS files be too large", function() {
   it('We should be able to know if a CSS file is too large', function() {

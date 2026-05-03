@@ -1,10 +1,8 @@
-'use strict';
-
-const api = require('../../lib/'),
-  urlParser = require('url'),
-  webserver = require('../help/webserver'),
-  chai = require('chai'),
-  chaiAsPromised = require('chai-as-promised');
+import api from '../../lib/index.js';
+import urlParser from 'node:url';
+import webserver from '../help/webserver.js';
+import chai from 'chai';
+import chaiAsPromised from 'chai-as-promised';
 
 chai.use(chaiAsPromised);
 chai.should();

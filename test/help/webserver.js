@@ -1,29 +1,27 @@
-'use strict';
+import { readFileSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import http from 'node:http';
+import http2 from 'node:http2';
+import connect from 'connect';
+import serveStatic from 'serve-static';
 
-const Promise = require('bluebird');
-const fs = require('fs');
-const connect = require('connect');
-const serveStatic = require('serve-static');
-const http = require('http');
-const http2 = require('http2');
-const path = require('path');
-
-Promise.promisifyAll(fs);
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 let server;
 let isListening = false;
 
 function createServer(useHttp2) {
-  const testdataFolder = path.join(__dirname, '..');
+  const testdataFolder = join(__dirname, '..');
   const app = connect();
 
-  app.use(serveStatic(path.resolve(testdataFolder, 'http-server'), {}));
+  app.use(serveStatic(resolve(testdataFolder, 'http-server'), {}));
 
   if (useHttp2) {
-    const certsFolder = path.join(testdataFolder, 'testdata', 'certs');
+    const certsFolder = join(testdataFolder, 'testdata', 'certs');
     const httpsOptions = {
-      key: fs.readFileSync(path.join(certsFolder, 'server.key'), 'utf8'),
-      cert: fs.readFileSync(path.join(certsFolder, 'server.crt'), 'utf8'),
+      key: readFileSync(join(certsFolder, 'server.key'), 'utf8'),
+      cert: readFileSync(join(certsFolder, 'server.crt'), 'utf8'),
       passphrase: 'coach'
     };
 
@@ -33,32 +31,30 @@ function createServer(useHttp2) {
   }
 }
 
-module.exports = {
-  async startServer(useHttp2) {
-    if (!server) {
-      server = createServer(useHttp2);
-    }
-
-    if (!isListening) {
-      await new Promise((resolve, reject) => {
-        server
-          .listen(0, '0.0.0.0')
-          .on('error', reject)
-          .on('listening', () => {
-            isListening = true;
-            resolve(server.address());
-          });
-      });
-    }
-
-    return server.address();
-  },
-
-  async stopServer() {
-    if (server && isListening) {
-      await Promise.resolve(server.close());
-      server = undefined;
-      isListening = false;
-    }
+export async function startServer(useHttp2) {
+  if (!server) {
+    server = createServer(useHttp2);
   }
-};
+
+  if (!isListening) {
+    await new Promise((resolveCb, rejectCb) => {
+      server
+        .listen(0, '0.0.0.0')
+        .on('error', rejectCb)
+        .on('listening', () => {
+          isListening = true;
+          resolveCb(server.address());
+        });
+    });
+  }
+
+  return server.address();
+}
+
+export async function stopServer() {
+  if (server && isListening) {
+    await Promise.resolve(server.close());
+    server = undefined;
+    isListening = false;
+  }
+}

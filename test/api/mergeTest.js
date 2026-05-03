@@ -1,11 +1,5 @@
-'use strict';
-
-const api = require('../../lib/'),
-  fs = require('fs'),
-  assert = require('assert'),
-  Promise = require('bluebird');
-
-Promise.promisifyAll(fs);
+import api from '../../lib/index.js';
+import assert from 'node:assert';
 
 describe('Merge API:', function() {
   it('should work', function() {

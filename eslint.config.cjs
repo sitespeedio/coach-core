@@ -24,8 +24,8 @@ module.exports = [
         ...globals.node
       },
 
-      ecmaVersion: 2018,
-      sourceType: 'commonjs'
+      ecmaVersion: 'latest',
+      sourceType: 'module'
     },
 
     rules: {
@@ -45,9 +45,19 @@ module.exports = [
   {
     files: ['lib/dom/**'],
     languageOptions: {
+      sourceType: 'script',
       globals: {
         ...globals.browser,
         util: true
+      }
+    }
+  },
+  {
+    // util.js itself declares util locally, so don't treat it as a global there.
+    files: ['lib/dom/util.js'],
+    languageOptions: {
+      globals: {
+        util: 'off'
       }
     }
   }

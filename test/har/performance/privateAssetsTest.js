@@ -1,7 +1,5 @@
-'use strict';
-
-let assert = require('assert');
-let har = require('../../help/har');
+import assert from 'node:assert';
+import har from '../../help/har.js';
 
 describe('Avoid setting private headers on items that can be cached', function() {
   it('We should be able to find cache headers that are private', function() {

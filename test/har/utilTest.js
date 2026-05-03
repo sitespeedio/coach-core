@@ -1,7 +1,5 @@
-'use strict';
-
-let assert = require('assert');
-let util = require('../../lib/har/util');
+import assert from 'node:assert';
+import * as util from '../../lib/har/util.js';
 
 describe('Test HAR util functions', function() {
   it('Categorize connection types H2 as HTTP/2 and nothing else', function() {

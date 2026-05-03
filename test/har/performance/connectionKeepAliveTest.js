@@ -1,7 +1,5 @@
-'use strict';
-
-let assert = require('assert');
-let har = require('../../help/har');
+import assert from 'node:assert';
+import har from '../../help/har.js';
 
 describe('Avoid closing a connection that can be used again', function() {
   it('We should be able to find connection close', function() {

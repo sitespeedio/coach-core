@@ -1,7 +1,5 @@
-'use strict';
-
-let assert = require('assert');
-let har = require('../../help/har');
+import assert from 'node:assert';
+import har from '../../help/har.js';
 
 describe('Avoid loading too many assets from one domain on HTTP/1', function() {
   it('We should be able to find to many assets on one domain', function() {

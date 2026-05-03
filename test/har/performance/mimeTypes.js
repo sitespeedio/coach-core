@@ -1,7 +1,5 @@
-'use strict';
-
-let assert = require('assert');
-let har = require('../../help/har');
+import assert from 'node:assert';
+import har from '../../help/har.js';
 const harfileCorrect = 'mimeTypesCorrect.har';
 const harfileIncorrect = 'mimeTypesIncorrect.har';
 /*

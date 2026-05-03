@@ -1,10 +1,8 @@
-'use strict';
-
-let Promise = require('bluebird'),
-  urlParser = require('url'),
-  fs = require('fs'),
-  webserver = require('./webserver'),
-  path = require('path');
+import Promise from 'bluebird';
+import urlParser from 'node:url';
+import fs from 'node:fs';
+import webserver from './webserver.js';
+import path from 'node:path';
 
 Promise.promisifyAll(fs);
 
@@ -23,7 +21,7 @@ function getScript(ruleFileName, category) {
   );
 }
 
-module.exports = {
+export default {
   async createTestRunner(browser, category, useHttp2) {
     function run(url, script) {
       return Promise.resolve(script).then(script =>

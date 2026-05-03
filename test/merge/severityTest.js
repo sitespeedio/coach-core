@@ -1,9 +1,9 @@
-'use strict';
+import assert from 'node:assert';
+import { createRequire } from 'node:module';
+import { merge } from '../../lib/merge.js';
+import * as severity from '../../lib/severity.js';
 
-const assert = require('assert');
-const merge = require('../../lib/merge').merge;
-const severity = require('../../lib/severity');
-
+const require = createRequire(import.meta.url);
 const domResult = require('./files/domResult.json');
 const harResult = require('./files/harResult.json');
 

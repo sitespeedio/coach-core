@@ -1,7 +1,5 @@
-'use strict';
-
-let assert = require('assert');
-let har = require('../../help/har');
+import assert from 'node:assert';
+import har from '../../help/har.js';
 
 describe('Search for referrer policy header', function() {
   it('We should be able to find if we do not have a referrer policy header', function() {

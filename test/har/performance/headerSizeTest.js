@@ -1,7 +1,5 @@
-'use strict';
-
-let assert = require('assert');
-let har = require('../../help/har');
+import assert from 'node:assert';
+import har from '../../help/har.js';
 
 describe("Don't send too much data in the headers", function() {
   it('We should be able to know if there are too large headers', function() {

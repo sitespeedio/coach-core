@@ -1,11 +1,11 @@
-'use strict';
+import { merge } from '../../lib/merge.js';
+import assert from 'node:assert';
+import { createRequire } from 'node:module';
 
-let merge = require('../../lib/merge').merge;
-let assert = require('assert');
-
-let domResult = require('./files/domResult.json');
-let harResult = require('./files/harResult.json');
-let harResultOverride = require('./files/harResultOverride.json');
+const require = createRequire(import.meta.url);
+const domResult = require('./files/domResult.json');
+const harResult = require('./files/harResult.json');
+const harResultOverride = require('./files/harResultOverride.json');
 
 describe('Merging DOM and HAR results', function() {
   it('We should have the right amount of performance advice', function() {
