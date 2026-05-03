@@ -6,12 +6,17 @@ describe('Performance advice HTTP/1:', function() {
   this.timeout(60000);
 
   BROWSERS.forEach(function(browser) {
-    describe('browser: ' + browser, async function() {
-      const runner = await createTestRunner(browser, 'performance');
+    describe('browser: ' + browser, function() {
+      let runner;
 
-      before(() => runner.start(browser));
+      before(async function() {
+        runner = await createTestRunner(browser, 'performance');
+        await runner.start();
+      });
 
-      after(() => runner.stop());
+      after(async function() {
+        if (runner) await runner.stop();
+      });
 
       it('We should find out if an image is scaled', function() {
         return runner.run('avoidScalingImages.js').then(result => {

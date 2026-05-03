@@ -1,29 +1,23 @@
 import api from '../../lib/index.js';
-import urlParser from 'node:url';
-import webserver from '../help/webserver.js';
-import chai from 'chai';
+import { use, should } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
+import { buildDriver } from '../help/browsertimeRunner.js';
+import { startServer, stopServer } from '../help/webserver.js';
 
-chai.use(chaiAsPromised);
-chai.should();
+use(chaiAsPromised);
+should();
 
 const BROWSERS = ['chrome', 'firefox'];
 
 describe('DOM APIs:', function() {
   let url;
 
-  before(() =>
-    webserver.startServer().then(address => {
-      url = urlParser.format({
-        protocol: 'http',
-        hostname: address.address,
-        port: address.port,
-        pathname: 'info/head.html'
-      });
-    })
-  );
+  before(async function() {
+    const address = await startServer();
+    url = `http://${address.address}:${address.port}/info/head.html`;
+  });
 
-  after(() => webserver.stopServer());
+  after(() => stopServer());
 
   describe('getDomAdvice', function() {
     it('should return a script', function() {
@@ -31,20 +25,38 @@ describe('DOM APIs:', function() {
     });
   });
 
+  // The previous version of this test called api.runDomAdvice(url, advice,
+  // options) — a high-level helper that no longer exists on the public
+  // API. We exercise the equivalent path here: take the bundled DOM
+  // script, drive a real browser to a fixture page, evaluate the bundle
+  // there, and check the returned object has the expected shape.
   BROWSERS.forEach(function(browser) {
-    describe('runDomAdvice: ' + browser, async function() {
+    describe('full DOM bundle: ' + browser, function() {
       this.timeout(60000);
+      let driver;
+      let bundle;
 
-      const advice = await api.getDomAdvice();
-      it('should run simple script', () =>
-        api
-          .runDomAdvice(url, advice, {
-            browser,
-            iterations: 1,
-            pageCompleteCheck: 'return window.performance.timing.loadEventEnd>0'
-            // TODO test that we actually have DOM data and valid HAR
-          })
-          .should.eventually.have.nested.property('advice.info.amp'));
+      before(async function() {
+        bundle = await api.getDomAdvice();
+        driver = await buildDriver(browser);
+      });
+
+      after(async function() {
+        if (driver) await driver.quit();
+      });
+
+      it('should run the bundle and report info advice', async function() {
+        await driver.get(url);
+        await driver.wait(
+          () =>
+            driver.executeScript(
+              'return window.performance.timing.loadEventEnd > 0;'
+            ),
+          30000
+        );
+        const result = await driver.executeScript('return ' + bundle);
+        result.should.have.nested.property('advice.info.amp');
+      });
     });
   });
 });

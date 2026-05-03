@@ -4,12 +4,17 @@ let BROWSERS = ['chrome', 'firefox'];
 
 describe('info - h2', function() {
   BROWSERS.forEach(function(browser) {
-    describe('browser: ' + browser, async function() {
-      const runner = await createTestRunner(browser, 'info', true);
+    describe('browser: ' + browser, function() {
+      let runner;
 
-      before(() => runner.start(browser));
+      before(async function() {
+        runner = await createTestRunner(browser, 'info', true);
+        await runner.start();
+      });
 
-      after(() => runner.stop());
+      after(async function() {
+        if (runner) await runner.stop();
+      });
 
       it('Should be able to know if the connection is H2', function() {
         return runner

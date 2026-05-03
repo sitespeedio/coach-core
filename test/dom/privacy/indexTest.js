@@ -6,12 +6,17 @@ describe('Privacy', function() {
   this.timeout(60000);
 
   BROWSERS.forEach(function(browser) {
-    describe('browser: ' + browser, async function() {
-      const runner = await createTestRunner(browser, 'privacy');
+    describe('browser: ' + browser, function() {
+      let runner;
 
-      before(() => runner.start(browser));
+      before(async function() {
+        runner = await createTestRunner(browser, 'privacy');
+        await runner.start();
+      });
 
-      after(() => runner.stop());
+      after(async function() {
+        if (runner) await runner.stop();
+      });
 
       it('We should be able to detect if a web page is served using HTTPS', function() {
         return runner.run('https.js').then(result => {
