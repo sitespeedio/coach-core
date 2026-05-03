@@ -1,9 +1,7 @@
-'use strict';
-
-const createTestRunner = require('../help/browsertimeRunner').createTestRunner,
-  assert = require('assert'),
-  fs = require('fs'),
-  path = require('path');
+import { createTestRunner } from '../help/browsertimeRunner.js';
+import assert from 'node:assert';
+import fs from 'node:fs';
+import path from 'node:path';
 
 let ADVICE_CATEGORIES = ['bestpractice', 'performance'];
 

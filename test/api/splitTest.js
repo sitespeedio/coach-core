@@ -1,27 +1,17 @@
-'use strict';
+import api from '../../lib/index.js';
+import { readFile } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import assert from 'node:assert';
 
-const api = require('../../lib/'),
-  fs = require('fs'),
-  path = require('path'),
-  Promise = require('bluebird'),
-  assert = require('assert');
-
-Promise.promisifyAll(fs);
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 describe('pickAPage HAR API:', function() {
-  const harPath = path.join(
-    __dirname,
-    '..',
-    'har',
-    'files',
-    'www.nytimes.com.har'
-  );
+  const harPath = join(__dirname, '..', 'har', 'files', 'www.nytimes.com.har');
 
-  it('should work', () =>
-    fs
-      .readFileAsync(harPath, 'utf8')
-      .then(JSON.parse)
-      .then(har =>
-        assert.strictEqual(api.pickAPage(har, 0).log.pages.length, 1)
-      ));
+  it('should work', async () => {
+    const text = await readFile(harPath, 'utf8');
+    const har = JSON.parse(text);
+    assert.strictEqual(api.pickAPage(har, 0).log.pages.length, 1);
+  });
 });

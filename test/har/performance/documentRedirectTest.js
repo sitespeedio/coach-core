@@ -1,7 +1,5 @@
-'use strict';
-
-let assert = require('assert');
-let har = require('../../help/har');
+import assert from 'node:assert';
+import har from '../../help/har.js';
 
 describe('Never do redirects on the main document', function() {
   it("We should be able to find out if page don't do a redirect", function() {

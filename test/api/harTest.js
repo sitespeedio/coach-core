@@ -1,16 +1,14 @@
-'use strict';
+import api from '../../lib/index.js';
+import { readFile } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { use, should } from 'chai';
+import chaiAsPromised from 'chai-as-promised';
 
-const api = require('../../lib/'),
-  fs = require('fs'),
-  path = require('path'),
-  Promise = require('bluebird'),
-  chai = require('chai'),
-  chaiAsPromised = require('chai-as-promised');
+use(chaiAsPromised);
+should();
 
-chai.use(chaiAsPromised);
-chai.should();
-
-Promise.promisifyAll(fs);
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 describe('HAR APIs:', function() {
   describe('getHarAdvice', function() {
@@ -18,29 +16,33 @@ describe('HAR APIs:', function() {
       api.getHarAdvice().should.eventually.not.be.empty);
 
     it('should only return valid advice', () =>
-      api
-        .getHarAdvice()
-        .then(adviceList =>
-          Promise.each(adviceList.performance, advice =>
-            ['id', 'title', 'description', 'weight', 'tags'].forEach(property =>
-              advice.should.have.ownProperty(property)
-            )
-          )
-        ));
+      api.getHarAdvice().then((adviceList) => {
+        for (const advice of adviceList.performance) {
+          for (const property of [
+            'id',
+            'title',
+            'description',
+            'weight',
+            'tags'
+          ]) {
+            advice.should.have.ownProperty(property);
+          }
+        }
+      }));
   });
 
   describe('analyseHar', async function() {
-    const harPath = path.join(
-        __dirname,
-        '..',
-        'har',
-        'files',
-        'www.nytimes.com.har'
-      ),
-      har = await fs.readFileAsync(harPath, 'utf8').then(JSON.parse);
+    const harPath = join(
+      __dirname,
+      '..',
+      'har',
+      'files',
+      'www.nytimes.com.har'
+    );
+    const har = JSON.parse(await readFile(harPath, 'utf8'));
 
     it('should output correct structure', () =>
-      api.analyseHar(har).then(advicePerPage => {
+      api.analyseHar(har).then((advicePerPage) => {
         advicePerPage.should.have.length(2);
 
         const firstPageAdvice = advicePerPage[0];

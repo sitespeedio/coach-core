@@ -1,7 +1,5 @@
-'use strict';
-
-let assert = require('assert');
-let har = require('../../help/har');
+import assert from 'node:assert';
+import har from '../../help/har.js';
 
 describe('Always compress text content', function() {
   it('We should be able to know that all content is compressed', function() {

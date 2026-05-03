@@ -1,9 +1,5 @@
-'use strict';
-
-const createTestRunner = require('../../help/browsertimeRunner')
-    .createTestRunner,
-  assert = require('assert');
-
+import { createTestRunner } from '../../help/browsertimeRunner.js';
+import assert from 'node:assert';
 let BROWSERS = ['chrome', 'firefox'];
 
 describe('Privacy', function() {

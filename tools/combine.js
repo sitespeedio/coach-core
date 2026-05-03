@@ -1,33 +1,36 @@
 #!/usr/bin/env node
 
-'use strict';
+import { readFileSync, statSync, writeFileSync } from 'node:fs';
+import { dirname, basename, extname, join, resolve } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { createRequire } from 'node:module';
+import filter from 'filter-files';
 
-const path = require('path'),
-  fs = require('fs'),
-  packageInfo = require('../package'),
-  filter = require('filter-files');
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const require = createRequire(import.meta.url);
+const packageInfo = require('../package.json');
 
-const filterJsFiles = file => path.extname(file) === '.js';
+const filterJsFiles = (file) => extname(file) === '.js';
 const filterDirs = (file, dir) =>
-  fs.statSync(path.resolve(dir, file)).isDirectory();
+  statSync(resolve(dir, file)).isDirectory();
 
 const fileContentsByName = (scripts, file) => {
-  const name = path.basename(file, '.js');
-  scripts[name] = fs.readFileSync(file, 'utf8');
+  const name = basename(file, '.js');
+  scripts[name] = readFileSync(file, 'utf8');
   return scripts;
 };
 
-module.exports = function(filename) {
-  const utilsSrc = fs.readFileSync(path.join(__dirname, '../lib/dom/util.js')),
-    calculateScoreSrc = fs.readFileSync(
-      path.join(__dirname, 'calculateScore.js')
+export default function combine(filename) {
+  const utilsSrc = readFileSync(join(__dirname, '../lib/dom/util.js')),
+    calculateScoreSrc = readFileSync(
+      join(__dirname, 'calculateScore.js')
     ),
-    categoriesPath = path.join(__dirname, '../lib/dom');
+    categoriesPath = join(__dirname, '../lib/dom');
 
   const categoryDirs = filter.sync(categoriesPath, filterDirs, false);
 
   const scriptsByCategory = categoryDirs.reduce((byCategory, categoryDir) => {
-    const categoryName = path.basename(categoryDir);
+    const categoryName = basename(categoryDir);
     byCategory[categoryName] = filter
       .sync(categoryDir, filterJsFiles, false)
       .reduce(fileContentsByName, {});
@@ -35,11 +38,11 @@ module.exports = function(filename) {
   }, {});
 
   const pushResultsSrc = Object.keys(scriptsByCategory)
-    .map(categoryId => {
+    .map((categoryId) => {
       let scriptsById = scriptsByCategory[categoryId];
       let pushResultsSrc = Object.keys(scriptsById)
         .map(
-          scriptId =>
+          (scriptId) =>
             `try {
             ${categoryId}Results["${scriptId}"] = ${scriptsById[scriptId]}
           } catch(err) {
@@ -100,9 +103,10 @@ module.exports = function(filename) {
   })();
 `;
 
-  fs.writeFileSync(filename, combinedSrc);
-};
+  writeFileSync(filename, combinedSrc);
+}
 
-if (!module.parent) {
-  module.exports(process.argv[2]);
+// Run as CLI when invoked directly.
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  combine(process.argv[2]);
 }

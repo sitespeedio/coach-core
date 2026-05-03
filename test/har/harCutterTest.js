@@ -1,8 +1,6 @@
-'use strict';
-
-let assert = require('assert');
-let harCutter = require('../../lib/har/harCutter').pickAPage;
-let helper = require('../help/har');
+import assert from 'node:assert';
+import { pickAPage as harCutter } from '../../lib/har/harCutter.js';
+import helper from '../help/har.js';
 
 describe('Test HAR cutter', function() {
   it('We should get the correct number of pages from the HAR cutter', function() {

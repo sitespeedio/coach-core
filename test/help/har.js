@@ -1,22 +1,23 @@
-'use strict';
+import { readFile } from 'node:fs/promises';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import * as api from '../../lib/index.js';
 
-let fs = require('fs'),
-  Promise = require('bluebird'),
-  path = require('path'),
-  api = require('../../lib/');
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-Promise.promisifyAll(fs);
+export async function harFromTestFile(fileName) {
+  const text = await readFile(
+    resolve(__dirname, '..', 'har', 'files', fileName),
+    'utf8'
+  );
+  return JSON.parse(text);
+}
 
-module.exports = {
-  harFromTestFile(fileName) {
-    return fs
-      .readFileAsync(path.resolve(__dirname, '..', 'har', 'files', fileName))
-      .then(JSON.parse);
-  },
-  async firstAdviceForTestFile(fileName, options) {
-    const advice = await api.getHarAdvice();
-    return this.harFromTestFile(fileName)
-      .then(har => api.analyseHar(har, advice, undefined, options))
-      .then(result => result[0].advice);
-  }
-};
+export async function firstAdviceForTestFile(fileName, options) {
+  const advice = await api.getHarAdvice();
+  const har = await harFromTestFile(fileName);
+  const result = await api.analyseHar(har, advice, undefined, options);
+  return result[0].advice;
+}
+
+export default { harFromTestFile, firstAdviceForTestFile };

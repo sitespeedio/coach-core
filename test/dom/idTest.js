@@ -1,9 +1,7 @@
-'use strict';
-
-const Promise = require('bluebird'),
-  assert = require('assert'),
-  fs = require('fs'),
-  path = require('path');
+import Promise from 'bluebird';
+import assert from 'node:assert';
+import fs from 'node:fs';
+import path from 'node:path';
 
 Promise.promisifyAll(fs);
 
