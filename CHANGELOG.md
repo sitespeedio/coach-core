@@ -1,5 +1,28 @@
 # CHANGELOG - coach-core
 
+## 9.0.0-alpha.1 - 2026-05-04
+
+### Breaking
+* Migrate the package to ECMAScript Modules. `coach-core` is now ESM-only — CommonJS consumers need to switch to `import` (or dynamic `import()`). The minimum supported Node version is bumped from 18 to 20 to match the rest of the sitespeed.io family. Internal CJS conventions (`require`, `module.exports`, `__dirname`) are replaced with ESM equivalents; the public API surface and result shape are unchanged [#146](https://github.com/sitespeedio/coach-core/pull/146).
+
+### Added
+* New `severity` field on every rule result, with three tiers (`error` / `warn` / `info`) modelled on Lighthouse and axe. Severity is orthogonal to weight: weight controls how strongly a rule pulls on the aggregate score, severity tells a consumer how loudly to surface a finding. Existing `score` and `weight` are unchanged [#143](https://github.com/sitespeedio/coach-core/pull/143).
+* Modern privacy / security header rules on the HAR side: `permissionsPolicyHeader`, `xContentTypeOptionsHeader` [#138](https://github.com/sitespeedio/coach-core/pull/138), and the cross-origin isolation trio `crossOriginOpenerPolicyHeader`, `crossOriginEmbedderPolicyHeader`, `crossOriginResourcePolicyHeader` [#139](https://github.com/sitespeedio/coach-core/pull/139).
+* Two DOM privacy rules that the HAR side cannot see: `iframeSandbox` (flags cross-origin iframes without a sandbox attribute) and `referrerPolicy` (flags pages with no `<meta name="referrer">`) [#139](https://github.com/sitespeedio/coach-core/pull/139).
+* Two DOM bestpractice rules: `viewport` (flags missing viewport meta, missing `width=device-width`, and the patterns that disable pinch-to-zoom) and `imageAltText` (flags `<img>` without an `alt` attribute, accepting `alt=""`, `role="presentation" / "none"` and `aria-hidden="true"` as valid markers for decorative images) [#140](https://github.com/sitespeedio/coach-core/pull/140).
+* `lib/technologies/VERSION.json` records source URL, upstream SHA and sync date for the bundled fingerprint catalogue, exposed via a new `coach.getTechnologiesVersion()` accessor next to `getWappalyzerCoreVersion()` and `getThirdPartyWebVersion()` [#144](https://github.com/sitespeedio/coach-core/pull/144).
+
+### Changed
+* Sync the bundled technology catalogue (`lib/technologies/*.json`, `categories.json`, `groups.json`) from `enthec/webappanalyzer@c2855b46` (2026-04-17). About sixteen months of upstream churn since the previous sync, net ~36 000 lines of new fingerprints [#144](https://github.com/sitespeedio/coach-core/pull/144).
+* Bump `third-party-web` to 0.29.0 [#145](https://github.com/sitespeedio/coach-core/pull/145).
+* Modernise the rule set: delete `dom/bestpractice/spdy.js` (SPDY no longer in browsers since 2016); rewrite `dom/privacy/surveillance.js` to scan `<script src>` and `<iframe src>` for known surveillance hostnames using exact-suffix host matching (no more `document.domain`, no more substring matches); update `dom/privacy/ga.js` to also detect GA4 (`gtag` + `dataLayer` config with `G-…` measurement id); replace the "HTTP/3 is new" placeholder in `dom/performance/inlineCss.js` with real advice; reweight `amp` (10 → 1) and `jquery` (4 → 1); drop SPDY from `isHTTP2` [#138](https://github.com/sitespeedio/coach-core/pull/138).
+* Modernise the GitHub Actions workflow: bump `actions/checkout` to v6.0.2, `actions/setup-node` to v6.4.0 (with npm cache enabled), replace the deprecated apt-key Chrome install with a one-liner, replace the unmaintained third-party `xvfb-action` with `xvfb-run`, expand the Node matrix to 20 / 22 / 24, drop test/dom and test/api/domTest.js from `npm test` (test runner needs a separate rewrite — see #147 if you want them back). New `dependabot.yml` keeps SHA pins current going forward [#141](https://github.com/sitespeedio/coach-core/pull/141).
+
+### Fixed
+* HSTS rule no longer scores 100 silently on an HTTPS page that is missing the Strict-Transport-Security header. Several other rules had small typos and dead branches that masked their advice text or scoring: dangling template literals in the FCP / LCP "good" branches (advice was being built and discarded), an off-by-one in `fullyLoaded.js` that skipped the first resource, an operator-precedence bug in `unnecessaryHeaders.js` that silently broke the cache-control + expires check, an assignment instead of `-=` in `thirdPartyCookies.js` that flattened the score regardless of cookie count, plus dead `score;` and `if (score === undefined)` blocks in HSTS [#137](https://github.com/sitespeedio/coach-core/pull/137).
+* `lib/har/thirdParty.js` no longer mutates the imported `third-party-web` entity object's `categories` array (side-effects could leak across pages and across consumers), and the misspelled `survelliance` category key is now spelled `surveillance` — small but visible behaviour change for any consumer that hard-coded the typo [#137](https://github.com/sitespeedio/coach-core/pull/137).
+* LCP "poor" advice text said "slower than 4.5 seconds" but the threshold is 4 seconds; text now matches the threshold [#137](https://github.com/sitespeedio/coach-core/pull/137).
+
 ## 8.1.3 - 2025-08-04
 ### Fixed
 * Reverted svg images in avoidScalingImages check released in 8.1.2 since it was causing errors. Lets work on a fir for it later and revert it for now [#135](https://github.com/sitespeedio/coach-core/pull/135).
