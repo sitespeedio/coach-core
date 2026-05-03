@@ -30,11 +30,7 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: EDGEDRIVER_SKIP_DOWNLOAD=true npm ci
-      - name: Install Chrome
-        uses: browser-actions/setup-chrome@c785b87e244131f27c9f19c1a33e2ead956ab7ce # v2.1.1
-        with:
-          chrome-version: stable
       - name: Lint
         run: npm run lint
       - name: Run unit tests
-        run: xvfb-run -a npm test
+        run: npm test
