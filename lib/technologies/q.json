@@ -39,23 +39,6 @@
     ],
     "website": "https://q4mobile.github.io/q4widgets-jquery-ui/doc_html/q4.cookieMonster.html"
   },
-  "QUIC.cloud": {
-    "cats": [
-      92,
-      23,
-      31
-    ],
-    "description": "QUIC.cloud is a content delivery network (CDN) and optimisation service that uses the QUIC protocol, a next-generation internet transport protocol developed by Google, to deliver content faster and more securely over the internet.",
-    "dns": {
-      "SOA": "\\.quicns\\.(?:net|com)"
-    },
-    "icon": "QUIC.cloud.svg",
-    "pricing": [
-      "freemium",
-      "payg"
-    ],
-    "website": "https://www.quic.cloud"
-  },
   "Qbrick": {
     "cats": [
       36
@@ -76,6 +59,18 @@
     ],
     "website": "https://www.qbrick.com"
   },
+  "QForm": {
+    "cats": [
+      110
+    ],
+    "description": "QForm is a tool for designing and managing customizable forms for data collection and processing.",
+    "icon": "QForm.svg",
+    "saas": true,
+    "scriptSrc": [
+      "cdn\\.qform(?:24\\.com|\\.io)/"
+    ],
+    "website": "https://qform.io"
+  },
   "Qgiv": {
     "cats": [
       111
@@ -94,6 +89,25 @@
       "//secure\\.qgiv\\.com/"
     ],
     "website": "https://www.qgiv.com"
+  },
+  "qiankun": {
+    "cats": [
+      59
+    ],
+    "description": "qiankun is a JS library who helps developers to build a micro frontends system.",
+    "dom": {
+      "div[id^='__qiankun_']": {
+        "attributes": {
+          "data-version": "([\\d\\.]+)\\;version:\\1"
+        }
+      }
+    },
+    "icon": "qiankun.svg",
+    "oss": true,
+    "scripts": [
+      "__POWERED_BY_QIANKUN__"
+    ],
+    "website": "https://qiankun.umijs.org"
   },
   "Qikify": {
     "cats": [
@@ -136,6 +150,35 @@
     ],
     "website": "https://www.qiscus.com"
   },
+  "Qiyeku": {
+    "cats": [
+      34
+    ],
+    "description": "Qiyeku is a Chinese enterprise database that provides business information, company listings, and industry resources for market research and trade connections.",
+    "icon": "Qiyeku.svg",
+    "saas": true,
+    "scriptSrc": [
+      "\\.qiyeku\\.cn"
+    ],
+    "website": "https://www.qiyeku.cn"
+  },
+  "Qomon": {
+    "cats": [
+      53
+    ],
+    "description": "Qomon is a Saas software and citizen engagement platform and mobile app for NGOs, movements, campaigns, advocacy groups, and citizen-driven organisations.",
+    "icon": "Qomon.svg",
+    "pricing": [
+      "low",
+      "recurring",
+      "poa"
+    ],
+    "saas": true,
+    "scriptSrc": [
+      "scripts\\.qomon\\.org"
+    ],
+    "website": "https://qomon.com"
+  },
   "Qonnex": {
     "cats": [
       6,
@@ -170,6 +213,59 @@
     ],
     "website": "https://qooqie.com"
   },
+  "QoreAI": {
+    "cats": [
+      1
+    ],
+    "description": "QoreAI is an all-in-one collaboration operating system designed for the automotive industry.",
+    "icon": "QoreAI.svg",
+    "js": {
+      "QoreAI.execute": ""
+    },
+    "pricing": [
+      "mid",
+      "recurring"
+    ],
+    "saas": true,
+    "scriptSrc": [
+      "app\\.qoreai\\.com"
+    ],
+    "website": "https://www.qoreai.com"
+  },
+  "Qpien": {
+    "cats": [
+      52
+    ],
+    "description": "Qpien is a SaaS platform that provides multi-channel customer communication management with AI reply automation, smart inbox, call center integration, and workflow orchestration.",
+    "icon": "Qpien.svg",
+    "js": {
+      "QpienWidget": "",
+      "qpienIframeAction": ""
+    },
+    "pricing": [
+      "low",
+      "recurring"
+    ],
+    "saas": true,
+    "website": "https://qpien.com"
+  },
+  "Qshop": {
+    "cats": [
+      6
+    ],
+    "description": "Qshop is a Korean ecommerce platform that enables the creation of online stores.",
+    "icon": "Qshop.svg",
+    "pricing": [
+      "freemium",
+      "low",
+      "recurring"
+    ],
+    "saas": true,
+    "scripts": [
+      "cdn\\.qshop\\.ai"
+    ],
+    "website": "https://qshop.ai"
+  },
   "Qstomizer": {
     "cats": [
       76
@@ -190,6 +286,21 @@
       "/qsmz-scripttag/qstomizer_st(?:\\.min)?\\.js"
     ],
     "website": "https://www.qstomizer.com"
+  },
+  "Quadran": {
+    "cats": [
+      92
+    ],
+    "description": "Quadran is a real-time end-user monitoring and performance analysis tool.",
+    "icon": "Quadran.svg",
+    "pricing": [
+      "poa"
+    ],
+    "saas": true,
+    "scriptSrc": [
+      "tracker\\.quadran\\.eu"
+    ],
+    "website": "https://www.quadran.eu"
   },
   "Qualaroo": {
     "cats": [
@@ -235,6 +346,21 @@
     ],
     "website": "https://www.qualified.com"
   },
+  "Qualitando": {
+    "cats": [
+      73
+    ],
+    "description": "Qualitando is an Italian customer satisfaction widget designed to collect, measure, and analyze user feedback to support service quality evaluation and improvement.",
+    "icon": "Qualitando.svg",
+    "saas": true,
+    "scriptSrc": [
+      "\\.qualitando\\.com"
+    ],
+    "scripts": [
+      "\\.qualitando\\.com"
+    ],
+    "website": "https://www.qualitando.com"
+  },
   "Qualitelis": {
     "cats": [
       90
@@ -249,6 +375,22 @@
     },
     "saas": true,
     "website": "https://www.qualitelis.septeo.com"
+  },
+  "Quality Unit Help Desk": {
+    "cats": [
+      52
+    ],
+    "description": "Quality Unit Help Desk is a customer support and help desk software designed to manage and streamline customer service operations.",
+    "icon": "QualityUnitHelpDesk.svg",
+    "pricing": [
+      "low",
+      "recurring"
+    ],
+    "saas": true,
+    "scripts": [
+      "\\.qualityunit\\.liveagent"
+    ],
+    "website": "https://www.qualityunit.com"
   },
   "Qualtrics": {
     "cats": [
@@ -268,6 +410,33 @@
       "\\.qualtrics\\.com/"
     ],
     "website": "https://www.qualtrics.com"
+  },
+  "Qualva": {
+    "cats": [
+      52
+    ],
+    "description": "Qualva is a chatbot platform designed to deliver consistent, user-focused interaction and support across various applications.",
+    "icon": "Qualva.svg",
+    "js": {
+      "qualva.Widget": ""
+    },
+    "saas": true,
+    "scriptSrc": [
+      "form\\.qualva\\.com"
+    ],
+    "website": "https://qualva.com"
+  },
+  "Quandoo": {
+    "cats": [
+      93
+    ],
+    "description": "Quandoo is a platform that allows users to find and reserve restaurants.",
+    "icon": "Quandoo.svg",
+    "saas": true,
+    "scriptSrc": [
+      "booking-widget\\.quandoo\\.com"
+    ],
+    "website": "https://www.quandoo.co.uk"
   },
   "Quant": {
     "cats": [
@@ -406,23 +575,22 @@
   },
   "Qubit": {
     "cats": [
-      74,
       76
     ],
-    "description": "Qubit is a SaaS based persuasive personalisation at scale services.",
-    "icon": "Qubit.png",
+    "description": "Qubit is a platform that enables personalized ecommerce experiences through data-driven insights and intelligent automation.",
+    "icon": "Qubit.svg",
     "js": {
-      "__qubit": "",
-      "onQubitReady": ""
+      "QUBIT_WORKER": ""
     },
     "pricing": [
-      "poa"
+      "low",
+      "recurring"
     ],
     "saas": true,
     "scriptSrc": [
-      "static\\.goqubit\\.com"
+      "\\.goqubit\\.com"
     ],
-    "website": "https://www.qubit.com"
+    "website": "https://www.coveo.com/en/qubit"
   },
   "Querlo": {
     "cats": [
@@ -497,19 +665,43 @@
     ],
     "website": "https://queue-it.com"
   },
-  "Quick.CMS": {
+  "Quform": {
     "cats": [
-      1
+      110
     ],
-    "cpe": "cpe:2.3:a:opensolution:quick.cms:*:*:*:*:*:*:*:*",
-    "html": [
-      "<a href=\"[^>]+opensolution\\.org/\">CMS by"
-    ],
-    "icon": "Quick.CMS.png",
-    "meta": {
-      "generator": "Quick\\.CMS(?: v([\\d.]+))?\\;version:\\1"
+    "description": "Quform is a WordPress plugin designed for building and managing forms.",
+    "icon": "Quform.svg",
+    "js": {
+      "Quform.captchaRefreshFormQueue": "",
+      "QuformRecaptchaLoaded": ""
     },
-    "website": "https://opensolution.org"
+    "pricing": [
+      "onetime"
+    ],
+    "requires": [
+      "WordPress"
+    ],
+    "saas": true,
+    "website": "https://www.quform.com"
+  },
+  "QUIC.cloud": {
+    "cats": [
+      92,
+      23,
+      31
+    ],
+    "description": "QUIC.cloud is a content delivery network (CDN) and optimisation service that uses the QUIC protocol, a next-generation internet transport protocol developed by Google, to deliver content faster and more securely over the internet.",
+    "dns": {
+      "SOA": [
+        "\\.quicns\\.(?:net|com)"
+      ]
+    },
+    "icon": "QUIC.cloud.svg",
+    "pricing": [
+      "freemium",
+      "payg"
+    ],
+    "website": "https://www.quic.cloud"
   },
   "Quick.Cart": {
     "cats": [
@@ -524,42 +716,19 @@
     },
     "website": "https://opensolution.org"
   },
-  "QuickCEP": {
+  "Quick.CMS": {
     "cats": [
-      52
+      1
     ],
-    "description": "QuickCEP is an AI-powered chatbot solution to improve business conversions, sales, and customer satisfaction through automated interactions.",
-    "icon": "QuickCEP.svg",
-    "pricing": [
-      "freemium",
-      "low",
-      "recurring",
-      "poa"
+    "cpe": "cpe:2.3:a:opensolution:quick.cms:*:*:*:*:*:*:*:*",
+    "html": [
+      "<a href=\"[^>]+opensolution\\.org/\">CMS by"
     ],
-    "saas": true,
-    "scriptSrc": [
-      "\\.quickcep\\.com/"
-    ],
-    "scripts": [
-      "\\.quickcep\\.com"
-    ],
-    "website": "https://www.quickcep.com"
-  },
-  "QuickSell": {
-    "cats": [
-      6
-    ],
-    "description": "QuickSell is a sales acceleration platform helping businesses transform conversations to conversions by leveraging personal commerce.",
-    "icon": "QuickSell.svg",
-    "pricing": [
-      "low",
-      "recurring"
-    ],
-    "saas": true,
-    "scriptSrc": [
-      "\\.quicksell\\.co/"
-    ],
-    "website": "https://quicksell.co"
+    "icon": "Quick.CMS.png",
+    "meta": {
+      "generator": "Quick\\.CMS(?: v([\\d.]+))?\\;version:\\1"
+    },
+    "website": "https://opensolution.org"
   },
   "Quickblog": {
     "cats": [
@@ -596,6 +765,27 @@
       "\\.quickbutik\\.com/"
     ],
     "website": "https://quickbutik.com"
+  },
+  "QuickCEP": {
+    "cats": [
+      52
+    ],
+    "description": "QuickCEP is an AI-powered chatbot solution to improve business conversions, sales, and customer satisfaction through automated interactions.",
+    "icon": "QuickCEP.svg",
+    "pricing": [
+      "freemium",
+      "low",
+      "recurring",
+      "poa"
+    ],
+    "saas": true,
+    "scriptSrc": [
+      "\\.quickcep\\.com/"
+    ],
+    "scripts": [
+      "\\.quickcep\\.com"
+    ],
+    "website": "https://www.quickcep.com"
   },
   "Quickchat AI": {
     "cats": [
@@ -634,6 +824,37 @@
       "quicklink@([\\d.]+)/dist/quicklink.*\\.js\\;version:\\1"
     ],
     "website": "https://getquick.link/"
+  },
+  "QuickSell": {
+    "cats": [
+      6
+    ],
+    "description": "QuickSell is a sales acceleration platform helping businesses transform conversations to conversions by leveraging personal commerce.",
+    "icon": "QuickSell.svg",
+    "pricing": [
+      "low",
+      "recurring"
+    ],
+    "saas": true,
+    "scriptSrc": [
+      "\\.quicksell\\.co/"
+    ],
+    "website": "https://quicksell.co"
+  },
+  "Quicksprout": {
+    "cats": [
+      92
+    ],
+    "description": "Quicksprout is a website optimization service focused on improving site performance and user engagement.",
+    "icon": "Quicksprout.svg",
+    "js": {
+      "_QS.CDN": "cdn\\.quicksprout\\.com"
+    },
+    "saas": true,
+    "scripts": [
+      "cdn\\.quicksprout\\.com"
+    ],
+    "website": "https://www.quicksprout.com"
   },
   "Quicktext": {
     "cats": [
@@ -706,6 +927,23 @@
     "saas": true,
     "website": "https://www.quintype.com"
   },
+  "Quiq Messaging": {
+    "cats": [
+      52
+    ],
+    "description": "Quiq Messaging is a business messaging solution designed to facilitate customer communication across multiple channels.",
+    "icon": "QuiqMessaging.svg",
+    "js": {
+      "Quiq": "",
+      "QuiqUtils": "",
+      "QuiqUtils._.VERSION": "([\\d.]+)\\;version:\\1"
+    },
+    "saas": true,
+    "scriptSrc": [
+      "\\.goquiq\\.com"
+    ],
+    "website": "https://quiq.com"
+  },
   "Quixchat": {
     "cats": [
       52
@@ -726,6 +964,26 @@
     ],
     "website": "https://quixchat.com"
   },
+  "Quizitri": {
+    "cats": [
+      32
+    ],
+    "description": "Quizitri is a tool for creating unlimited quizzes aimed at increasing conversions, website traffic, lead generation, and sales.",
+    "icon": "Quizitri.svg",
+    "pricing": [
+      "low",
+      "recurring",
+      "onetime"
+    ],
+    "saas": true,
+    "scriptSrc": [
+      "app\\.quizitri\\.com"
+    ],
+    "scripts": [
+      "app\\.quizitri\\.com"
+    ],
+    "website": "https://www.quizitri.com"
+  },
   "Qukasoft": {
     "cats": [
       6
@@ -741,6 +999,24 @@
     ],
     "saas": true,
     "website": "https://www.qukasoft.com"
+  },
+  "Qumra": {
+    "cats": [
+      6
+    ],
+    "description": "Qumra is a platform that enables users to create ecommerce websites without requiring any programming knowledge.",
+    "icon": "Qumra.svg",
+    "js": {
+      "Qumra.cart": "",
+      "__qumra__": ""
+    },
+    "pricing": [
+      "freemium",
+      "low",
+      "recurring"
+    ],
+    "saas": true,
+    "website": "https://www.qumra.cloud"
   },
   "Quoli": {
     "cats": [
@@ -804,6 +1080,23 @@
     ],
     "website": "https://quotemedia.com"
   },
+  "QUV": {
+    "cats": [
+      51
+    ],
+    "description": "QUV is a Korean no-code website builder platform that enables website creation through drag-and-drop functionality.",
+    "icon": "QUV.svg",
+    "pricing": [
+      "freemium",
+      "low",
+      "recurring"
+    ],
+    "saas": true,
+    "scriptSrc": [
+      "\\.quv\\.kr/"
+    ],
+    "website": "https://quv.kr"
+  },
   "Qwik": {
     "cats": [
       18
@@ -819,24 +1112,5 @@
     "icon": "Qwik.svg",
     "oss": true,
     "website": "https://qwik.builder.io"
-  },
-  "qiankun": {
-    "cats": [
-      59
-    ],
-    "description": "qiankun is a JS library who helps developers to build a micro frontends system.",
-    "dom": {
-      "div[id^='__qiankun_']": {
-        "attributes": {
-          "data-version": "([\\d\\.]+)\\;version:\\1"
-        }
-      }
-    },
-    "icon": "qiankun.svg",
-    "oss": true,
-    "scripts": [
-      "__POWERED_BY_QIANKUN__"
-    ],
-    "website": "https://qiankun.umijs.org"
   }
 }
