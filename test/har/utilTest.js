@@ -4,11 +4,9 @@ let assert = require('assert');
 let util = require('../../lib/har/util');
 
 describe('Test HAR util functions', function() {
-  it('Categorize connection types H2/SPDY as HTTP/2 and nothing else', function() {
+  it('Categorize connection types H2 as HTTP/2 and nothing else', function() {
     let page = {};
     page.httpType = 'h2';
-    assert.strictEqual(util.isHTTP2(page), true);
-    page.httpType = 'spdy';
     assert.strictEqual(util.isHTTP2(page), true);
     page.httpType = 'h1';
     assert.strictEqual(util.isHTTP2(page), false);
