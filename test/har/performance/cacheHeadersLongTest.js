@@ -6,12 +6,13 @@ describe('Use cache headers', function() {
     return har.firstAdviceForTestFile('cacheHeaders.har').then(result => {
       assert.strictEqual(
         result.performance.adviceList.cacheHeadersLong.score,
-        70
+        0
       );
-      // massive
+      // massive — the fixture has 114 assets with cache times shorter
+      // than one year (the new threshold; was 30 days previously).
       assert.strictEqual(
         result.performance.adviceList.cacheHeadersLong.offending.length,
-        30
+        114
       );
     });
   });
