@@ -1,39 +1,34 @@
-import Promise from 'bluebird';
 import assert from 'node:assert';
-import fs from 'node:fs';
-import path from 'node:path';
+import { readFile, readdir, stat } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-Promise.promisifyAll(fs);
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 describe('Verify advice IDs', function() {
-  it('We should have an ID that matches the file name', function() {
-    const domAdviceDir = path.join(__dirname, '..', '..', 'lib', 'dom');
-    const adviceCategoriesWithIds = [
-      'bestpractice',
-      'performance'
-    ];
-    return fs
-      .readdirAsync(domAdviceDir)
-      .filter(filename =>
-        fs
-          .statAsync(path.join(domAdviceDir, filename))
-          .then(stat => stat.isDirectory())
-      )
-      .filter(dirname => adviceCategoriesWithIds.indexOf(dirname) !== -1)
-      .each(dirname => {
-        return fs
-          .readdirAsync(path.join(domAdviceDir, dirname))
-          .filter(filename => filename.endsWith('.js'))
-          .each(filename => {
-            const name = filename.slice(0, -3);
+  it('We should have an ID that matches the file name', async function() {
+    const domAdviceDir = join(__dirname, '..', '..', 'lib', 'dom');
+    const adviceCategoriesWithIds = ['bestpractice', 'performance'];
 
-            return fs
-              .readFileAsync(path.join(domAdviceDir, dirname, filename), 'utf8')
-              .then(contents => {
-                const id = contents.match(/id: '([^']*)',/)[1];
-                assert(id === name, 'Mismatch of ID/filename for ' + filename);
-              });
-          });
-      });
+    const entries = await readdir(domAdviceDir);
+    for (const entry of entries) {
+      if (!adviceCategoriesWithIds.includes(entry)) continue;
+      const entryPath = join(domAdviceDir, entry);
+      if (!(await stat(entryPath)).isDirectory()) continue;
+
+      const files = await readdir(entryPath);
+      for (const filename of files) {
+        if (!filename.endsWith('.js')) continue;
+        const name = filename.slice(0, -3);
+        const contents = await readFile(join(entryPath, filename), 'utf8');
+        const match = contents.match(/id: '([^']*)',/);
+        assert.ok(match, `No id field found in ${filename}`);
+        assert.strictEqual(
+          match[1],
+          name,
+          `Mismatch of ID/filename for ${filename}`
+        );
+      }
+    }
   });
 });

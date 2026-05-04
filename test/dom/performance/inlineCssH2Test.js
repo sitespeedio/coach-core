@@ -4,12 +4,17 @@ let BROWSERS = ['chrome', 'firefox'];
 
 describe('Inline CSS advice HTTP/2:', function() {
   BROWSERS.forEach(function(browser) {
-    describe('browser: ' + browser, async function() {
-      const runner = await createTestRunner(browser, 'performance', true);
+    describe('browser: ' + browser, function() {
+      let runner;
 
-      before(() => runner.start(browser));
+      before(async function() {
+        runner = await createTestRunner(browser, 'performance', true);
+        await runner.start();
+      });
 
-      after(() => runner.stop());
+      after(async function() {
+        if (runner) await runner.stop();
+      });
 
       it('We should be able to know if we inline CSS and request CSS files', function() {
         return runner

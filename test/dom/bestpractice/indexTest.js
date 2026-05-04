@@ -6,12 +6,17 @@ describe('Best practice', function() {
   this.timeout(60000);
 
   BROWSERS.forEach(function(browser) {
-    describe('browser: ' + browser, async function() {
-      const runner = await createTestRunner(browser, 'bestpractice');
+    describe('browser: ' + browser, function() {
+      let runner;
 
-      before(() => runner.start(browser));
+      before(async function() {
+        runner = await createTestRunner(browser, 'bestpractice');
+        await runner.start();
+      });
 
-      after(() => runner.stop());
+      after(async function() {
+        if (runner) await runner.stop();
+      });
 
       it('We should be able to check the title tag', function() {
         return runner.run('pageTitle.js').then(result => {

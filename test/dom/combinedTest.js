@@ -1,33 +1,59 @@
-import { createTestRunner } from '../help/browsertimeRunner.js';
-import path from 'node:path';
+import { readFile } from 'node:fs/promises';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import assert from 'node:assert';
+import { buildDriver } from '../help/browsertimeRunner.js';
+import { startServer, stopServer } from '../help/webserver.js';
 
-let BROWSERS = ['chrome', 'firefox'];
-
-const SCRIPT_NAME = 'coach.min.js',
-  scriptPath = path.resolve(__dirname, '..', '..', 'dist', SCRIPT_NAME);
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const SCRIPT_NAME = 'coach.min.js';
+const scriptPath = resolve(__dirname, '..', '..', 'dist', SCRIPT_NAME);
+const BROWSERS = ['chrome', 'firefox'];
 
 describe('Combined minified script [' + SCRIPT_NAME + ']', function() {
   this.timeout(60000);
 
   BROWSERS.forEach(function(browser) {
-    describe('browser: ' + browser, async function() {
-      const runner = await createTestRunner(browser, 'combined');
+    describe('browser: ' + browser, function() {
+      let driver;
+      let baseUrl;
+      let bundle;
 
-      before(() => runner.start(browser));
-
-      after(() => runner.stop());
-
-      it('We should have a combined score for all categories', function() {
-        return runner.run(scriptPath, 'index.html').then(result => {
-          assert.strictEqual(result.advice.score > 0, true);
-        });
+      before(async function() {
+        bundle = await readFile(scriptPath, 'utf8');
+        const address = await startServer();
+        baseUrl = `http://${address.address}:${address.port}`;
+        driver = await buildDriver(browser);
       });
 
-      it('We should have an average score for performance', function() {
-        return runner.run(scriptPath, 'index.html').then(result => {
-          assert.strictEqual(result.advice.performance.score > 0, true);
-        });
+      after(async function() {
+        try {
+          if (driver) await driver.quit();
+        } finally {
+          await stopServer();
+        }
+      });
+
+      async function runBundle() {
+        await driver.get(`${baseUrl}/combined/index.html`);
+        await driver.wait(
+          () =>
+            driver.executeScript(
+              'return window.performance.timing.loadEventEnd > 0;'
+            ),
+          30000
+        );
+        return driver.executeScript('return ' + bundle);
+      }
+
+      it('We should have a combined score for all categories', async function() {
+        const result = await runBundle();
+        assert.strictEqual(result.advice.score > 0, true);
+      });
+
+      it('We should have an average score for performance', async function() {
+        const result = await runBundle();
+        assert.strictEqual(result.advice.performance.score > 0, true);
       });
     });
   });
