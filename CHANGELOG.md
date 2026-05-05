@@ -1,5 +1,15 @@
 # CHANGELOG - coach-core
 
+## 9.0.0-beta.1 - 2026-05-05
+
+### Added
+* New `interactionToNextPaint` DOM performance rule. INP replaced First Input Delay as a Core Web Vital in March 2026, but coach-core had rules for every other Web Vital (LCP, FCP, CLS) and was silently behind on the one Google now ranks against. The rule observes buffered `event` entries via PerformanceObserver, groups them by `interactionId` so a single user interaction's three events (pointerdown, pointerup, click) count as one, and reports the slowest. Thresholds match Google's published p75 cutoffs: ≤200ms good, 200–500ms needs improvement, >500ms poor. Synthetic tests rarely fire interactions, so the rule explicitly handles the no-measurement case rather than scoring zero — INP is best measured with real-user monitoring and the advice text says so [#155](https://github.com/sitespeedio/coach-core/pull/155).
+* Four new DOM performance rules covering modern image best practices: `decodingAsync` flags `<img>` elements without a `decoding` hint so non-LCP image decode doesn't block the main thread; `lazyLoadingImages` flags below-the-fold images that aren't `loading="lazy"` (the threshold deliberately overshoots — more than two viewport heights below the current scroll position — so images just out of view aren't penalised); `modernImageFormats` flags `<img>` that ships a JPEG/PNG/GIF without an AVIF or WebP alternative through `<picture>` or its own `srcset`; `lcpImageHints` scores priority hints on the LCP image (`fetchpriority="high"` recommended, `loading="lazy"` forbidden) [#157](https://github.com/sitespeedio/coach-core/pull/157).
+
+### Changed
+* The `largestContentfulPaint` rule no longer scores `fetchpriority` and `loading` hints on the LCP image. Those checks moved into the new `lcpImageHints` rule above so a consumer can tell "the hero image is slow" apart from "the hero image's hints are wrong" — different remediations, separate scores [#157](https://github.com/sitespeedio/coach-core/pull/157).
+* Drop `bluebird` from runtime dependencies — native promises cover everything coach-core needs and the package was effectively unused [#156](https://github.com/sitespeedio/coach-core/pull/156).
+
 ## 9.0.0-alpha.2 - 2026-05-04
 
 ### Added
