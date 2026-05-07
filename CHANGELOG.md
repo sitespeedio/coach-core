@@ -1,5 +1,11 @@
 # CHANGELOG - coach-core
 
+## 9.0.1 - 2026-05-07
+
+### Fixed
+* The `mimeTypes` HAR performance check no longer flags `204 No Content` responses as missing a recognised content type. A 204 response has no body, so there is nothing to attribute a MIME type to and the rule should not subtract score for it. Thank you [Nate Spector](https://github.com/nspector) for PR [#161](https://github.com/sitespeedio/coach-core/pull/161).
+* The `nelHeader` and `reportingEndpointsHeader` HAR privacy rules are now weight 0 so they no longer pull on the aggregate score. Both rules are tagged `severity: 'info'` and describe genuinely opt-in observability headers — most sites have no Reporting-API endpoint to point them at and should not be docked privacy score for that. The advice still surfaces as informational, matching the established pattern in `mimeTypes` [#162](https://github.com/sitespeedio/coach-core/pull/162).
+
 ## 9.0.0 - 2026-05-05
 
 ### Breaking
