@@ -1,5 +1,9 @@
 # CHANGELOG - coach-core
 
+## 9.1.0 - 2026-05-14
+### Added
+* Updated to PageXraty 5.0.0 [#164](https://github.com/sitespeedio/coach-core/pull/164).
+
 ## 9.0.1 - 2026-05-07
 
 ### Fixed
