@@ -1,6 +1,6 @@
 {
   "name": "coach-core",
-  "version": "9.0.1",
+  "version": "9.1.0",
   "description": "Core package for the Coach.",
   "keywords": [
     "performance",
