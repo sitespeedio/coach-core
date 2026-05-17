@@ -20,4 +20,16 @@ export async function firstAdviceForTestFile(fileName, options) {
   return result[0].advice;
 }
 
-export default { harFromTestFile, firstAdviceForTestFile };
+// Run the advice pipeline against an in-memory HAR (typically a fixture clone
+// with a tweak applied). Returns the first page's advice block.
+export async function firstAdviceForHar(har, options) {
+  const advice = await api.getHarAdvice();
+  const result = await api.analyseHar(har, advice, undefined, options);
+  return result[0].advice;
+}
+
+export default {
+  harFromTestFile,
+  firstAdviceForTestFile,
+  firstAdviceForHar
+};
