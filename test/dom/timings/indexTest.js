@@ -1,46 +1,69 @@
+import test from 'ava';
 import { createTestRunner } from '../../help/browsertimeRunner.js';
-import assert from 'node:assert';
-let BROWSERS = ['chrome', 'firefox'];
 
-describe('Timings', function() {
-  this.timeout(60000);
+const BROWSERS = ['chrome', 'firefox'];
+const runners = new Map();
 
-  BROWSERS.forEach(function(browser) {
-    describe('browser: ' + browser, function() {
-      let runner;
-
-      before(async function() {
-        runner = await createTestRunner(browser, 'timings');
-        await runner.start();
-      });
-
-      after(async function() {
-        if (runner) await runner.stop();
-      });
-
-      it('We should get a Navigation Timings', function() {
-        return runner.run('navigationTimings.js', 'index.html').then(result => {
-          assert.strictEqual(result.loadEventEnd > 0, true);
-        });
-      });
-
-      it('We should get User Timing Marks', function() {
-        return runner.run('userTimings.js', 'index.html').then(result => {
-          assert.strictEqual(result.marks[0].startTime > 0, true);
-        });
-      });
-
-      it('We should get User Timing measurements', function() {
-        return runner.run('userTimings.js', 'index.html').then(result => {
-          assert.strictEqual(result.measures[0].duration > 0, true);
-        });
-      });
-
-      it('We should get a fully loaded timing', function() {
-        return runner.run('fullyLoaded.js', 'index.html').then(result => {
-          assert.strictEqual(result > 0, true);
-        });
-      });
-    });
-  });
+test.before(async () => {
+  for (const browser of BROWSERS) {
+    const runner = await createTestRunner(browser, 'timings');
+    await runner.start();
+    runners.set(browser, runner);
+  }
 });
+
+test.after.always(async () => {
+  for (const runner of runners.values()) {
+    try {
+      await runner.stop();
+    } catch {
+      // ignore
+    }
+  }
+});
+
+for (const browser of BROWSERS) {
+  test.serial(
+    `Timings / browser: ${browser} / We should get a Navigation Timings`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners
+        .get(browser)
+        .run('navigationTimings.js', 'index.html');
+      t.true(result.loadEventEnd > 0);
+    }
+  );
+
+  test.serial(
+    `Timings / browser: ${browser} / We should get User Timing Marks`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners
+        .get(browser)
+        .run('userTimings.js', 'index.html');
+      t.true(result.marks[0].startTime > 0);
+    }
+  );
+
+  test.serial(
+    `Timings / browser: ${browser} / We should get User Timing measurements`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners
+        .get(browser)
+        .run('userTimings.js', 'index.html');
+      t.true(result.measures[0].duration > 0);
+    }
+  );
+
+  test.serial(
+    `Timings / browser: ${browser} / We should get a fully loaded timing`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners
+        .get(browser)
+        .run('fullyLoaded.js', 'index.html');
+      t.true(result > 0);
+    }
+  );
+}

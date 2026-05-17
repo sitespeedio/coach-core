@@ -1,34 +1,32 @@
-import assert from 'node:assert';
+import test from 'ava';
 import * as util from '../../lib/har/util.js';
 
-describe('Test HAR util functions', function() {
-  it('Categorize connection types H2 as HTTP/2 and nothing else', function() {
-    let page = {};
-    page.httpType = 'h2';
-    assert.strictEqual(util.isHTTP2(page), true);
-    page.httpType = 'h1';
-    assert.strictEqual(util.isHTTP2(page), false);
-    page.httpType = 'h3-29';
-    assert.strictEqual(util.isHTTP3(page), true);
-    assert.strictEqual(util.isHTTP2(page), false);
-  });
+test('Test HAR util functions / Categorize connection types H2 as HTTP/2 and nothing else', (t) => {
+  const page = {};
+  page.httpType = 'h2';
+  t.true(util.isHTTP2(page));
+  page.httpType = 'h1';
+  t.false(util.isHTTP2(page));
+  page.httpType = 'h3-29';
+  t.true(util.isHTTP3(page));
+  t.false(util.isHTTP2(page));
+});
 
-  it('Get the right hostname', function() {
-    let url = 'https://www.sitespeed.io/hepp.php';
-    assert.strictEqual(util.getHostname(url), 'www.sitespeed.io');
+test('Test HAR util functions / Get the right hostname', (t) => {
+  let url = 'https://www.sitespeed.io/hepp.php';
+  t.is(util.getHostname(url), 'www.sitespeed.io');
 
-    url = 'https://www.sitespeed.io:8080/hepp.php';
-    assert.strictEqual(util.getHostname(url), 'www.sitespeed.io');
+  url = 'https://www.sitespeed.io:8080/hepp.php';
+  t.is(util.getHostname(url), 'www.sitespeed.io');
 
-    url = 'https://sitespeed.io';
-    assert.strictEqual(util.getHostname(url), 'sitespeed.io');
-  });
+  url = 'https://sitespeed.io';
+  t.is(util.getHostname(url), 'sitespeed.io');
+});
 
-  it('Format bytes for readability', function() {
-    let bytes = 1200000;
-    assert.strictEqual(util.formatBytes(bytes), '1.2 MB');
+test('Test HAR util functions / Format bytes for readability', (t) => {
+  let bytes = 1200000;
+  t.is(util.formatBytes(bytes), '1.2 MB');
 
-    bytes = 120000;
-    assert.strictEqual(util.formatBytes(bytes), '120 kB');
-  });
+  bytes = 120000;
+  t.is(util.formatBytes(bytes), '120 kB');
 });

@@ -1,19 +1,16 @@
-import assert from 'node:assert';
+import test from 'ava';
 import har from '../../help/har.js';
 
-describe('Investigate response headers for headers we do not need', function() {
-  it('We should find headers that we do not need', function() {
-    return har.firstAdviceForTestFile('unnecessaryHeaders.har').then(result => {
-      assert.strictEqual(
-        result.bestpractice.adviceList.unnecessaryHeaders.offending.length,
-        16,
-        result.bestpractice.adviceList.unnecessaryHeaders.advice
-      );
-      assert.strictEqual(
-        result.bestpractice.adviceList.unnecessaryHeaders.score,
-        84,
-        result.bestpractice.adviceList.unnecessaryHeaders.advice
-      );
-    });
-  });
+test('Investigate response headers for headers we do not need / We should find headers that we do not need', async (t) => {
+  const result = await har.firstAdviceForTestFile('unnecessaryHeaders.har');
+  t.is(
+    result.bestpractice.adviceList.unnecessaryHeaders.offending.length,
+    16,
+    result.bestpractice.adviceList.unnecessaryHeaders.advice
+  );
+  t.is(
+    result.bestpractice.adviceList.unnecessaryHeaders.score,
+    84,
+    result.bestpractice.adviceList.unnecessaryHeaders.advice
+  );
 });

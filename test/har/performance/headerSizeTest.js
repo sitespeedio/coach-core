@@ -1,20 +1,13 @@
-import assert from 'node:assert';
+import test from 'ava';
 import har from '../../help/har.js';
 
-describe("Don't send too much data in the headers", function() {
-  it('We should be able to know if there are too large headers', function() {
-    return har.firstAdviceForTestFile('headerSize.har').then(result => {
-      assert.strictEqual(result.performance.adviceList.headerSize.score, 100);
-    });
-  });
+test("Don't send too much data in the headers / We should be able to know if there are too large headers (headerSize)", async (t) => {
+  const result = await har.firstAdviceForTestFile('headerSize.har');
+  t.is(result.performance.adviceList.headerSize.score, 100);
+});
 
-  it('We should be able to know if there are too large headers', function() {
-    return har.firstAdviceForTestFile('headerSize2.har').then(result => {
-      assert.strictEqual(result.performance.adviceList.headerSize.score, 90);
-      assert.strictEqual(
-        result.performance.adviceList.headerSize.offending.length,
-        1
-      );
-    });
-  });
+test("Don't send too much data in the headers / We should be able to know if there are too large headers (headerSize2)", async (t) => {
+  const result = await har.firstAdviceForTestFile('headerSize2.har');
+  t.is(result.performance.adviceList.headerSize.score, 90);
+  t.is(result.performance.adviceList.headerSize.offending.length, 1);
 });

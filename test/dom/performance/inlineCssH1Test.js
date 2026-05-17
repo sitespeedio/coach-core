@@ -1,36 +1,45 @@
+import test from 'ava';
 import { createTestRunner } from '../../help/browsertimeRunner.js';
-import assert from 'node:assert';
-let BROWSERS = ['chrome', 'firefox'];
 
-describe('Inline CSS advice HTTP/1:', function() {
-  BROWSERS.forEach(function(browser) {
-    describe('browser: ' + browser, function() {
-      let runner;
+const BROWSERS = ['chrome', 'firefox'];
+const runners = new Map();
 
-      before(async function() {
-        runner = await createTestRunner(browser, 'performance');
-        await runner.start();
-      });
-
-      after(async function() {
-        if (runner) await runner.stop();
-      });
-
-      it('We should be able to know if we inline CSS and request CSS files', function() {
-        return runner
-          .run('inlineCss.js', 'inlinecss/inlineAndRequestCss.html')
-          .then(result => {
-            assert.strictEqual(result.score, 90);
-          });
-      });
-
-      it('We should be able to know if we request CSS files', function() {
-        return runner
-          .run('inlineCss.js', 'inlinecss/noInlineAndRequestCss.html')
-          .then(result => {
-            assert.strictEqual(result.score, 90);
-          });
-      });
-    });
-  });
+test.before(async () => {
+  for (const browser of BROWSERS) {
+    const runner = await createTestRunner(browser, 'performance');
+    await runner.start();
+    runners.set(browser, runner);
+  }
 });
+
+test.after.always(async () => {
+  for (const runner of runners.values()) {
+    try {
+      await runner.stop();
+    } catch {
+      // ignore
+    }
+  }
+});
+
+for (const browser of BROWSERS) {
+  test.serial(
+    `Inline CSS advice HTTP/1 / browser: ${browser} / We should be able to know if we inline CSS and request CSS files`,
+    async (t) => {
+      const result = await runners
+        .get(browser)
+        .run('inlineCss.js', 'inlinecss/inlineAndRequestCss.html');
+      t.is(result.score, 90);
+    }
+  );
+
+  test.serial(
+    `Inline CSS advice HTTP/1 / browser: ${browser} / We should be able to know if we request CSS files`,
+    async (t) => {
+      const result = await runners
+        .get(browser)
+        .run('inlineCss.js', 'inlinecss/noInlineAndRequestCss.html');
+      t.is(result.score, 90);
+    }
+  );
+}

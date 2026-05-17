@@ -1,22 +1,12 @@
-import assert from 'node:assert';
+import test from 'ava';
 import har from '../../help/har.js';
 
-describe("Don't let the CSS files be too large", function() {
-  it('We should be able to know if a CSS file is too large', function() {
-    return har.firstAdviceForTestFile('optimalCssSize.har').then(result => {
-      assert.strictEqual(
-        result.performance.adviceList.optimalCssSize.score,
-        90
-      );
-    });
-  });
+test("Don't let the CSS files be too large / We should be able to know if a CSS file is too large (optimalCssSize)", async (t) => {
+  const result = await har.firstAdviceForTestFile('optimalCssSize.har');
+  t.is(result.performance.adviceList.optimalCssSize.score, 90);
+});
 
-  it('We should be able to know if a CSS file is too large', function() {
-    return har.firstAdviceForTestFile('optimalCssSize2.har').then(result => {
-      assert.strictEqual(
-        result.performance.adviceList.optimalCssSize.score,
-        80
-      );
-    });
-  });
+test("Don't let the CSS files be too large / We should be able to know if a CSS file is too large (optimalCssSize2)", async (t) => {
+  const result = await har.firstAdviceForTestFile('optimalCssSize2.har');
+  t.is(result.performance.adviceList.optimalCssSize.score, 80);
 });

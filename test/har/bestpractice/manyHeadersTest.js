@@ -1,14 +1,8 @@
-import assert from 'node:assert';
+import test from 'ava';
 import har from '../../help/har.js';
 
-describe('Investigate many response headers', function() {
-  it('We should be able to find responses with really many headers', function() {
-    return har.firstAdviceForTestFile('manyHeaders.har').then(result => {
-      assert.strictEqual(
-        result.bestpractice.adviceList.manyHeaders.offending.length,
-        1
-      );
-      assert.strictEqual(result.bestpractice.adviceList.manyHeaders.score, 99);
-    });
-  });
+test('Investigate many response headers / We should be able to find responses with really many headers', async (t) => {
+  const result = await har.firstAdviceForTestFile('manyHeaders.har');
+  t.is(result.bestpractice.adviceList.manyHeaders.offending.length, 1);
+  t.is(result.bestpractice.adviceList.manyHeaders.score, 99);
 });
