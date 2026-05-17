@@ -1,28 +1,34 @@
+import test from 'ava';
 import { createTestRunner } from '../../help/browsertimeRunner.js';
-import assert from 'node:assert';
-let BROWSERS = ['chrome', 'firefox'];
 
-describe('Privacy', function() {
-  this.timeout(60000);
+const BROWSERS = ['chrome', 'firefox'];
+const runners = new Map();
 
-  BROWSERS.forEach(function(browser) {
-    describe('browser: ' + browser, function() {
-      let runner;
-
-      before(async function() {
-        runner = await createTestRunner(browser, 'privacy');
-        await runner.start();
-      });
-
-      after(async function() {
-        if (runner) await runner.stop();
-      });
-
-      it('We should be able to detect if a web page is served using HTTPS', function() {
-        return runner.run('https.js').then(result => {
-          assert.strictEqual(result.score, 0);
-        });
-      });
-    });
-  });
+test.before(async () => {
+  for (const browser of BROWSERS) {
+    const runner = await createTestRunner(browser, 'privacy');
+    await runner.start();
+    runners.set(browser, runner);
+  }
 });
+
+test.after.always(async () => {
+  for (const runner of runners.values()) {
+    try {
+      await runner.stop();
+    } catch {
+      // ignore
+    }
+  }
+});
+
+for (const browser of BROWSERS) {
+  test.serial(
+    `Privacy / browser: ${browser} / We should be able to detect if a web page is served using HTTPS`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners.get(browser).run('https.js');
+      t.is(result.score, 0);
+    }
+  );
+}

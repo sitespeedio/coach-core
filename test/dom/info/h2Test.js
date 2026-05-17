@@ -1,28 +1,37 @@
+import test from 'ava';
 import { createTestRunner } from '../../help/browsertimeRunner.js';
-import assert from 'node:assert';
-let BROWSERS = ['chrome', 'firefox'];
 
-describe('info - h2', function() {
-  BROWSERS.forEach(function(browser) {
-    describe('browser: ' + browser, function() {
-      let runner;
+const BROWSERS = ['chrome', 'firefox'];
+const runners = new Map();
 
-      before(async function() {
-        runner = await createTestRunner(browser, 'info', true);
-        await runner.start();
-      });
-
-      after(async function() {
-        if (runner) await runner.stop();
-      });
-
-      it('Should be able to know if the connection is H2', function() {
-        return runner
-          .runGlobalServer('connectionType.js', 'https://www.sitespeed.io/')
-          .then(result => {
-            assert.strictEqual(result, 'h2');
-          });
-      });
-    });
-  });
+test.before(async () => {
+  for (const browser of BROWSERS) {
+    const runner = await createTestRunner(browser, 'info', true);
+    await runner.start();
+    runners.set(browser, runner);
+  }
 });
+
+test.after.always(async () => {
+  for (const runner of runners.values()) {
+    try {
+      await runner.stop();
+    } catch {
+      // ignore
+    }
+  }
+});
+
+for (const browser of BROWSERS) {
+  test.serial(
+    `info - h2 / browser: ${browser} / Should be able to know if the connection is H2`,
+    async (t) => {
+      const runner = runners.get(browser);
+      const result = await runner.runGlobalServer(
+        'connectionType.js',
+        'https://www.sitespeed.io/'
+      );
+      t.is(result, 'h2');
+    }
+  );
+}

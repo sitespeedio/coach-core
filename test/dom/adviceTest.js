@@ -1,60 +1,66 @@
+import test from 'ava';
 import { createTestRunner } from '../help/browsertimeRunner.js';
-import assert from 'node:assert';
 import fs from 'node:fs';
 import path from 'node:path';
 
-let ADVICE_CATEGORIES = ['bestpractice', 'performance'];
+const ADVICE_CATEGORIES = ['bestpractice', 'performance'];
+const KEYS = [
+  'id',
+  'title',
+  'description',
+  'advice',
+  'score',
+  'weight',
+  'offending',
+  'tags'
+];
 
-function assertKeys(result, filename) {
-  const KEYS = [
-    'id',
-    'title',
-    'description',
-    'advice',
-    'score',
-    'weight',
-    'offending',
-    'tags'
-  ];
-
-  KEYS.forEach(function(key) {
-    assert.strictEqual(
-      result.hasOwnProperty(key),
-      true,
-      'The ' + filename + ' advice is missing the ' + key + ' key'
+function assertKeys(t, result, filename) {
+  for (const key of KEYS) {
+    t.true(
+      Object.prototype.hasOwnProperty.call(result, key),
+      `The ${filename} advice is missing the ${key} key`
     );
-  });
-  // verify that we don't return to many keys in the advice
-  assert.strictEqual(
+  }
+  t.is(
     Object.keys(result).length,
     KEYS.length,
-    'The ' + filename + " advice doesn't return  the right number of keys"
+    `The ${filename} advice doesn't return the right number of keys`
   );
 }
 
-describe('Verify advice structure',function() {
-  this.timeout(60000);
+const runners = new Map();
 
-  ADVICE_CATEGORIES.forEach(function(category) {
-    describe('category: ' + category, async function() {
-      // we only need to test this for one browser
-      const runner = await createTestRunner('chrome', category);
-
-      let files = fs.readdirSync('lib/dom/' + category + '/');
-
-      before(() => runner.start());
-
-      after(() => runner.stop());
-
-      files.forEach(function(filename) {
-        if (path.extname(filename) === '.js') {
-          it('We should return the keys for ' + filename, function() {
-            return runner
-              .run(filename)
-              .then(result => assertKeys(result, filename));
-          });
-        }
-      });
-    });
-  });
+test.before(async () => {
+  for (const category of ADVICE_CATEGORIES) {
+    const runner = await createTestRunner('chrome', category);
+    await runner.start();
+    runners.set(category, runner);
+  }
 });
+
+test.after.always(async () => {
+  for (const runner of runners.values()) {
+    try {
+      await runner.stop();
+    } catch {
+      // ignore — best-effort cleanup
+    }
+  }
+});
+
+for (const category of ADVICE_CATEGORIES) {
+  const dir = `lib/dom/${category}/`;
+  for (const filename of fs.readdirSync(dir)) {
+    if (path.extname(filename) !== '.js') continue;
+    test.serial(
+      `Verify advice structure / category: ${category} / We should return the keys for ${filename}`,
+      async (t) => {
+        t.timeout(60_000);
+        const runner = runners.get(category);
+        const result = await runner.run(filename);
+        assertKeys(t, result, filename);
+      }
+    );
+  }
+}

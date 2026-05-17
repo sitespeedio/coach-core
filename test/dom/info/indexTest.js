@@ -1,136 +1,183 @@
+import test from 'ava';
 import { createTestRunner } from '../../help/browsertimeRunner.js';
-import assert from 'node:assert';
-let BROWSERS = ['chrome', 'firefox'];
 
-describe('Info', function() {
-  this.timeout(60000);
+const BROWSERS = ['chrome', 'firefox'];
+const runners = new Map();
 
-  BROWSERS.forEach(function(browser) {
-    describe('browser: ' + browser, function() {
-      let runner;
-
-      before(async function() {
-        runner = await createTestRunner(browser, 'info');
-        await runner.start();
-      });
-
-      after(async function() {
-        if (runner) await runner.stop();
-      });
-
-      it('We should be able to find the assets inside the head tag', function() {
-        return runner.run('head.js').then(result => {
-          assert.strictEqual(result.jssync.length, 1);
-          assert.strictEqual(result.jsasync.length, 1);
-          assert.strictEqual(result.css.length, 2);
-        });
-      });
-
-      it('We should be able to identify a AMP page', function() {
-        return runner.run('amp.js').then(result => {
-          assert.strictEqual(result, '1450396666888');
-        });
-      });
-
-      it('We should be able to identify the connection type', function() {
-        return runner
-          .runGlobalServer('connectionType.js', 'https://www.sitespeed.io/')
-          .then(result => {
-            assert.notStrictEqual(result, 'unknown');
-          });
-      });
-
-      it('We should be able to find iframes', function() {
-        return runner.run('iframes.js').then(result => {
-          assert.strictEqual(result, 2);
-        });
-      });
-
-      it('We should be able to get the title', function() {
-        return runner.run('documentTitle.js').then(result => {
-          assert.strictEqual(result, 'Document title');
-        });
-      });
-
-      it('We should be able to get the document height', function() {
-        return runner.run('documentHeight.js').then(result => {
-          assert.strictEqual(result > 0, true);
-        });
-      });
-
-      it('We should be able to get the document width', function() {
-        return runner.run('documentWidth.js').then(result => {
-          assert.strictEqual(result > 0, true);
-        });
-      });
-
-      it('We should be able to count the DOM depth', function() {
-        return runner.run('domDepth.js').then(result => {
-          assert.strictEqual(result.avg, 3);
-          assert.strictEqual(result.max, 4);
-        });
-      });
-
-      it('We should be able to get the DOM elements', function() {
-        const elements = 26;
-        return runner.run('domElements.js').then(result => {
-          assert.strictEqual(result, elements);
-        });
-      });
-
-      it('We should be able to get the local storage size', function() {
-        return runner.run('localStorageSize.js').then(result => {
-          assert.strictEqual(result > 0, true);
-        });
-      });
-
-      it('We should be able to get the session storage size', function() {
-        return runner.run('sessionStorageSize.js').then(result => {
-          assert.strictEqual(result > 0, true);
-        });
-      });
-
-      it('We should be able to get the window size', function() {
-        return runner.run('windowSize.js').then(result => {
-          assert.strictEqual(/^\d+x\d+$/.test(result), true);
-        });
-      });
-
-      it('We should be able to know which browser runs', function() {
-        return runner.run('browser.js').then(result => {
-          assert.notStrictEqual(result, 'unknown');
-        });
-      });
-
-      it('We should be able to get resource hints', function() {
-        return runner.run('resourceHints.js').then(result => {
-          assert.strictEqual(
-            result.prerender[0],
-            'http://0.0.0.0:8282/info/amp.html',
-            'Could not fetch prerender'
-          );
-          assert.strictEqual(
-            result.preconnect[0],
-            'http://example.com/',
-            'Could not fetch preconnect'
-          );
-          assert.ok(
-            result.prefetch[0].endsWith('/info/js/body.js'),
-            'Could not fetch prefetch'
-          );
-          assert.strictEqual(
-            result['dns-prefetch'][0],
-            'http://example.com/',
-            'Could not fetch dns-prefetch'
-          );
-        });
-      });
-
-      it('We should be able to know if the page uses user timings', function() {
-        return runner.run('userTiming.js').then(result => {
-          assert.strictEqual(result.marks, 1);
-        });
-      });
-    });
-  });
+test.before(async () => {
+  for (const browser of BROWSERS) {
+    const runner = await createTestRunner(browser, 'info');
+    await runner.start();
+    runners.set(browser, runner);
+  }
 });
+
+test.after.always(async () => {
+  for (const runner of runners.values()) {
+    try {
+      await runner.stop();
+    } catch {
+      // ignore
+    }
+  }
+});
+
+for (const browser of BROWSERS) {
+  test.serial(
+    `Info / browser: ${browser} / We should be able to find the assets inside the head tag`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners.get(browser).run('head.js');
+      t.is(result.jssync.length, 1);
+      t.is(result.jsasync.length, 1);
+      t.is(result.css.length, 2);
+    }
+  );
+
+  test.serial(
+    `Info / browser: ${browser} / We should be able to identify a AMP page`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners.get(browser).run('amp.js');
+      t.is(result, '1450396666888');
+    }
+  );
+
+  test.serial(
+    `Info / browser: ${browser} / We should be able to identify the connection type`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners
+        .get(browser)
+        .runGlobalServer('connectionType.js', 'https://www.sitespeed.io/');
+      t.not(result, 'unknown');
+    }
+  );
+
+  test.serial(
+    `Info / browser: ${browser} / We should be able to find iframes`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners.get(browser).run('iframes.js');
+      t.is(result, 2);
+    }
+  );
+
+  test.serial(
+    `Info / browser: ${browser} / We should be able to get the title`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners.get(browser).run('documentTitle.js');
+      t.is(result, 'Document title');
+    }
+  );
+
+  test.serial(
+    `Info / browser: ${browser} / We should be able to get the document height`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners.get(browser).run('documentHeight.js');
+      t.true(result > 0);
+    }
+  );
+
+  test.serial(
+    `Info / browser: ${browser} / We should be able to get the document width`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners.get(browser).run('documentWidth.js');
+      t.true(result > 0);
+    }
+  );
+
+  test.serial(
+    `Info / browser: ${browser} / We should be able to count the DOM depth`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners.get(browser).run('domDepth.js');
+      t.is(result.avg, 3);
+      t.is(result.max, 4);
+    }
+  );
+
+  test.serial(
+    `Info / browser: ${browser} / We should be able to get the DOM elements`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners.get(browser).run('domElements.js');
+      t.is(result, 26);
+    }
+  );
+
+  test.serial(
+    `Info / browser: ${browser} / We should be able to get the local storage size`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners.get(browser).run('localStorageSize.js');
+      t.true(result > 0);
+    }
+  );
+
+  test.serial(
+    `Info / browser: ${browser} / We should be able to get the session storage size`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners.get(browser).run('sessionStorageSize.js');
+      t.true(result > 0);
+    }
+  );
+
+  test.serial(
+    `Info / browser: ${browser} / We should be able to get the window size`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners.get(browser).run('windowSize.js');
+      t.regex(result, /^\d+x\d+$/);
+    }
+  );
+
+  test.serial(
+    `Info / browser: ${browser} / We should be able to know which browser runs`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners.get(browser).run('browser.js');
+      t.not(result, 'unknown');
+    }
+  );
+
+  test.serial(
+    `Info / browser: ${browser} / We should be able to get resource hints`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners.get(browser).run('resourceHints.js');
+      t.is(
+        result.prerender[0],
+        'http://0.0.0.0:8282/info/amp.html',
+        'Could not fetch prerender'
+      );
+      t.is(
+        result.preconnect[0],
+        'http://example.com/',
+        'Could not fetch preconnect'
+      );
+      t.true(
+        result.prefetch[0].endsWith('/info/js/body.js'),
+        'Could not fetch prefetch'
+      );
+      t.is(
+        result['dns-prefetch'][0],
+        'http://example.com/',
+        'Could not fetch dns-prefetch'
+      );
+    }
+  );
+
+  test.serial(
+    `Info / browser: ${browser} / We should be able to know if the page uses user timings`,
+    async (t) => {
+      t.timeout(60_000);
+      const result = await runners.get(browser).run('userTiming.js');
+      t.is(result.marks, 1);
+    }
+  );
+}

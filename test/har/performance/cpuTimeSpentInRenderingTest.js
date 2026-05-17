@@ -1,13 +1,7 @@
-import assert from 'node:assert';
+import test from 'ava';
 import har from '../../help/har.js';
 
-describe('Find too long time spent in rendering', function() {
-  it('We should be ble to find long time spent in rendering', function() {
-    return har.firstAdviceForTestFile('cpuTime.har').then(result => {
-      assert.strictEqual(
-        result.performance.adviceList.cpuTimeSpentInRendering.score < 100,
-        true
-      );
-    });
-  });
+test('Find too long time spent in rendering / We should be ble to find long time spent in rendering', async (t) => {
+  const result = await har.firstAdviceForTestFile('cpuTime.har');
+  t.true(result.performance.adviceList.cpuTimeSpentInRendering.score < 100);
 });
