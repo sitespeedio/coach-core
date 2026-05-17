@@ -76,7 +76,6 @@
   ],
   "dependencies": {
     "pagexray": "5.0.0",
-    "third-party-web": "0.29.0",
-    "wappalyzer-core": "6.10.54"
+    "third-party-web": "0.29.0"
   }
 }
