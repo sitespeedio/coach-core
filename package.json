@@ -49,7 +49,6 @@
   },
   "devDependencies": {
     "browsertime": "27.0.0",
-    "bookmarkletify": "^1.0.0",
     "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
     "connect": "^3.7.0",
@@ -78,10 +77,8 @@
   ],
   "dependencies": {
     "filter-files": "0.4.0",
-    "json-stable-stringify": "1.0.2",
     "lodash.groupby": "4.6.0",
     "lodash.merge": "4.6.2",
-    "lodash.sortby": "4.7.0",
     "pagexray": "5.0.0",
     "third-party-web": "0.29.0",
     "wappalyzer-core": "6.10.54"
