@@ -1,18 +1,25 @@
 #!/usr/bin/env node
 
-import { readFileSync, statSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, basename, extname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
-import filter from 'filter-files';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
 const packageInfo = require('../package.json');
 
-const filterJsFiles = (file) => extname(file) === '.js';
-const filterDirs = (file, dir) =>
-  statSync(resolve(dir, file)).isDirectory();
+function listDirs(dir) {
+  return readdirSync(dir)
+    .map((name) => resolve(dir, name))
+    .filter((path) => statSync(path).isDirectory());
+}
+
+function listJsFiles(dir) {
+  return readdirSync(dir)
+    .filter((name) => extname(name) === '.js')
+    .map((name) => resolve(dir, name));
+}
 
 const fileContentsByName = (scripts, file) => {
   const name = basename(file, '.js');
@@ -27,13 +34,16 @@ export default function combine(filename) {
     ),
     categoriesPath = join(__dirname, '../lib/dom');
 
-  const categoryDirs = filter.sync(categoriesPath, filterDirs, false);
+  mkdirSync(dirname(filename), { recursive: true });
+
+  const categoryDirs = listDirs(categoriesPath);
 
   const scriptsByCategory = categoryDirs.reduce((byCategory, categoryDir) => {
     const categoryName = basename(categoryDir);
-    byCategory[categoryName] = filter
-      .sync(categoryDir, filterJsFiles, false)
-      .reduce(fileContentsByName, {});
+    byCategory[categoryName] = listJsFiles(categoryDir).reduce(
+      fileContentsByName,
+      {}
+    );
     return byCategory;
   }, {});
 

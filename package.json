@@ -32,7 +32,7 @@
     "url": "https://github.com/sitespeedio/coach-core/issues"
   },
   "scripts": {
-    "combine": "mkdirp dist && node tools/combine.js dist/coach.js",
+    "combine": "node tools/combine.js dist/coach.js",
     "test:api": "mocha --recursive test/api",
     "test:dom": "mocha --recursive test/dom",
     "test:har": "mocha --recursive test/har",
@@ -55,7 +55,6 @@
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "mkdirp": "^3.0.1",
     "mocha": "^10.2.0",
     "prettier": "^3.4.2",
     "serve-static": "^1.16.2",
@@ -76,7 +75,6 @@
     }
   ],
   "dependencies": {
-    "filter-files": "0.4.0",
     "pagexray": "5.0.0",
     "third-party-web": "0.29.0",
     "wappalyzer-core": "6.10.54"
