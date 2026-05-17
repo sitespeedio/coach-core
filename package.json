@@ -52,10 +52,9 @@
     "test:browser": "ava test/api/domTest.js test/dom/adviceTest.js test/dom/combinedTest.js \"test/dom/bestpractice/**/*Test.js\" \"test/dom/info/**/*Test.js\" \"test/dom/performance/**/*Test.js\" \"test/dom/privacy/**/*Test.js\" \"test/dom/timings/**/*Test.js\"",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "prepare": "npm run combine && npm run terser",
     "gen-dist": "npm run combine && npm run terser",
-    "terser": "terser dist/coach.js --compresss --mangle --format wrap_iife=true --parse acorn > dist/coach.min.js"
+    "terser": "terser dist/coach.js --compress --mangle --format wrap_iife=true --parse acorn > dist/coach.min.js"
   },
   "devDependencies": {
     "ava": "6.4.1",
