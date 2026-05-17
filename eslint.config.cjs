@@ -1,19 +1,12 @@
 const prettier = require('eslint-plugin-prettier');
 const globals = require('globals');
 const js = require('@eslint/js');
-const { FlatCompat } = require('@eslint/eslintrc');
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all
-});
 
 module.exports = [
   {
     ignores: ['**/dist/', '**/node_modules/', '**/test/', '**/tools/']
   },
-  ...compat.extends('eslint:recommended'),
+  js.configs.recommended,
   {
     plugins: {
       prettier
