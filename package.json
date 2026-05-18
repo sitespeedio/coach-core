@@ -54,7 +54,7 @@
     "lint:fix": "eslint . --fix",
     "prepare": "npm run combine && npm run terser",
     "gen-dist": "npm run combine && npm run terser",
-    "terser": "terser dist/coach.js --compress --mangle --format wrap_iife=true --parse acorn > dist/coach.min.js"
+    "terser": "terser dist/coach.js --compress negate_iife=false --mangle --format wrap_iife=true --parse acorn > dist/coach.min.js"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
