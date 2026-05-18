@@ -1,5 +1,9 @@
 # CHANGELOG - coach-core
 
+## 9.2.1 - 2026-05-18
+### Fixed
+* 9.2.0 generated JS was broken, fixed in [#177](https://github.com/sitespeedio/coach-core/pull/177).
+
 ## 9.2.0 - 2026-05-17
 ### Added
 * Vendor the Wappalyzer engine in `lib/technologies/wappalyzer.js` and drop the deprecated `wappalyzer-core` npm package. The upstream package is unmaintained on npm, ships with a `Proprietary` license tag, and prints a deprecation warning on every install even though it is a few hundred lines of zero-dependency pattern matching. The port keeps the same public surface (`setTechnologies`, `setCategories`, `analyze`, `resolve`), the same pattern parsing, and the same implies/excludes resolution — behaviour is unchanged on the existing technology tests (real WordPress HAR fixture, plus the CSP-leak and third-party-headers safety checks). `getWappalyzerCoreVersion()` now reports coach-core's own version, which is the thing that actually changes when the engine changes; the data version stays separately available via `getTechnologiesVersion()` [#169](https://github.com/sitespeedio/coach-core/pull/169).
