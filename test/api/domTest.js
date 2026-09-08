@@ -55,7 +55,11 @@ for (const browser of BROWSERS) {
         30_000
       );
       const result = await driver.executeScript('return ' + bundle);
-      t.truthy(result?.advice?.info?.amp);
+      // Ordinary page, so info.amp is legitimately false — assert the
+      // bundle produced the info block, not that the page is AMP.
+      t.is(result.advice.info.amp, false);
+      t.truthy(result.advice.performance.adviceList);
+      t.is(result.url, url);
     }
   );
 }
