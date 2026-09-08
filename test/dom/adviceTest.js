@@ -11,6 +11,7 @@ const KEYS = [
   'advice',
   'score',
   'weight',
+  'severity',
   'offending',
   'tags'
 ];
