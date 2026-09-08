@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Modern image formats</title>
+  </head>
+  <body>
+    <!-- Plain JPEG, no .webp sibling, so always served image/jpeg.
+         The one we should flag. -->
+    <img src="img/legacyOnly.jpg" alt="legacy only" />
+
+    <!-- Already a modern format in the URL. -->
+    <img src="img/modern.webp" alt="modern" />
+
+    <!-- Legacy <img>, modern <source> in front of it. -->
+    <picture>
+      <source type="image/webp" srcset="img/modern.webp" />
+      <img src="img/legacyOnly.jpg" alt="picture fallback" />
+    </picture>
+
+    <!-- Inline data URI, skipped. -->
+    <img
+      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+      alt="inline"
+    />
+  </body>
+</html>

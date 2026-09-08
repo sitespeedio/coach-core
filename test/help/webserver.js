@@ -17,6 +17,8 @@ const MIME = {
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.gif': 'image/gif',
+  '.webp': 'image/webp',
+  '.avif': 'image/avif',
   '.svg': 'image/svg+xml',
   '.ico': 'image/x-icon',
   '.txt': 'text/plain; charset=utf-8'
@@ -33,6 +35,36 @@ function resolveRequestPath(urlPath) {
   return candidate;
 }
 
+// Mimic an image pipeline negotiating on Accept: foo.jpg is answered with
+// foo.webp when the client accepts WebP and a sibling file exists. Inert for
+// every fixture without such a sibling, so other tests are untouched.
+const NEGOTIABLE = new Set(['.jpg', '.jpeg', '.png']);
+
+function negotiateImage(target, acceptHeader) {
+  const extension = extname(target).toLowerCase();
+  if (!NEGOTIABLE.has(extension)) {
+    return target;
+  }
+  const accept = acceptHeader || '';
+  for (const [type, modernExtension] of [
+    ['image/avif', '.avif'],
+    ['image/webp', '.webp']
+  ]) {
+    if (!accept.includes(type)) {
+      continue;
+    }
+    const candidate = target.slice(0, -extension.length) + modernExtension;
+    try {
+      if (statSync(candidate).isFile()) {
+        return candidate;
+      }
+    } catch {
+      // No sibling in that format, try the next.
+    }
+  }
+  return target;
+}
+
 function handle(req, res) {
   const target = resolveRequestPath(req.url || '/');
   if (!target) {
@@ -41,18 +73,22 @@ function handle(req, res) {
     return;
   }
   try {
-    const stat = statSync(target);
-    if (stat.isDirectory()) {
+    if (statSync(target).isDirectory()) {
       res.statusCode = 404;
       res.end();
       return;
     }
+    const file = negotiateImage(target, req.headers && req.headers.accept);
+    const stat = statSync(file);
+    if (file !== target) {
+      res.setHeader('Vary', 'Accept');
+    }
     res.setHeader(
       'Content-Type',
-      MIME[extname(target).toLowerCase()] || 'application/octet-stream'
+      MIME[extname(file).toLowerCase()] || 'application/octet-stream'
     );
     res.setHeader('Content-Length', stat.size);
-    createReadStream(target).pipe(res);
+    createReadStream(file).pipe(res);
   } catch {
     res.statusCode = 404;
     res.end();
