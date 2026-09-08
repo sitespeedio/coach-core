@@ -80,7 +80,9 @@ export async function startServer(useHttp2) {
   if (!isListening) {
     await new Promise((resolveCb, rejectCb) => {
       server
-        .listen(0, '0.0.0.0')
+        // Loopback, not 0.0.0.0: the browsers run on this machine, and
+        // Firefox refuses http://0.0.0.0:port where Chrome tolerates it.
+        .listen(0, '127.0.0.1')
         .on('error', rejectCb)
         .on('listening', () => {
           isListening = true;
